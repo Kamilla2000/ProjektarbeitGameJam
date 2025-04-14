@@ -15,6 +15,7 @@ Wie steuert man in der Anwendung / Spiel?
 ## Author(s)
 Kamilla Becker
 Mariia Pastukh
+Stephan Einecke
 
 ## Credits
 This app/game was created at the Visualization and Interaction in Digital Media (VIS) program of HS Ansbach. 
