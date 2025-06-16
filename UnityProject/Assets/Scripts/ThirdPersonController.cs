@@ -1,72 +1,84 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 /// <summary>
-/// Base for a third person character controller
+/// Base for a third person character controller with jumping
 /// </summary>
+[RequireComponent(typeof(CharacterController))]
 public class ThirdPersonController : MonoBehaviour
 {
-    // how fast the character can turn
-    public float RotationSpeed;
-
-
-    private Transform _cameraTransform;
-
-    // Damping for locomotion animator parameter
+    public float RotationSpeed = 720f;
     public float LocomotionParameterDamping = 0.1f;
 
-    // Animator playing animations
+    public float JumpForce = 5f;
+    public float Gravity = -9.81f;
+
+    private float _verticalVelocity;
+    private bool _isGrounded;
+
+    private CharacterController _characterController;
+    private Transform _cameraTransform;
     private Animator _animator;
 
-    // Hash speed parameter
     private int _speedParameterHash;
-
-    // Hash speed parameter
     private int _isWalkingParameterHash;
+    private int _jumpTriggerHash;
 
-    // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _characterController = GetComponent<CharacterController>();
+
+        _cameraTransform = Camera.main.transform;
+
         _speedParameterHash = Animator.StringToHash("speed");
         _isWalkingParameterHash = Animator.StringToHash("isMoving");
-        _cameraTransform = Camera.main.transform;
+        _jumpTriggerHash = Animator.StringToHash("JumpTrigger");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Stores inputs
+        // Read input
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
+
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-        float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude); //Die Länge von Vector
+        float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
 
-
-        //make movement diraction based on camera 
+        // Adjust movement based on camera orientation
         movementDirection = Quaternion.AngleAxis(_cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
 
-
-        // Should walk? (left or right shift held)
         bool shouldWalk = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-
-        // Set speed to half of input when charakter should walk
-        // otherwise use horizontal input
         float speed = shouldWalk ? inputMagnitude * 0.333f : inputMagnitude;
 
-        // Set animator isWalking parameter depending on input
         _animator.SetBool(_isWalkingParameterHash, inputMagnitude > 0);
-
-        // Set animaotr speed parameter with damping (moves the character via root motion)
         _animator.SetFloat(_speedParameterHash, speed, LocomotionParameterDamping, Time.deltaTime);
 
-        //rotate Character
+        // Ground check
+        _isGrounded = _characterController.isGrounded;
+        if (_isGrounded && _verticalVelocity < 0)
+            _verticalVelocity = -2f;
 
+        // Jumping
+        if (_isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            _verticalVelocity = JumpForce;
+            _animator.SetTrigger(_jumpTriggerHash);
+        }
+
+        // Apply gravity
+        _verticalVelocity += Gravity * Time.deltaTime;
+
+        // Movement
+        Vector3 move = movementDirection.normalized * speed;
+        move.y = _verticalVelocity;
+
+        _characterController.Move(move * Time.deltaTime);
+
+        // Rotation
         if (movementDirection != Vector3.zero)
         {
-
-
-            Quaternion targetCharacterRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetCharacterRotation, RotationSpeed * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
         }
     }
 }
