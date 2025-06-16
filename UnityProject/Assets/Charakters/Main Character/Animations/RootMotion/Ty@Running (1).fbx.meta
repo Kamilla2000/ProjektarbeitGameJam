@@ -1,79 +1,9 @@
 fileFormatVersion: 2
-guid: 8fa31338c708de5488551c1427318b50
+guid: 0d59b417d75562d4ab8f6323b6a1ef3e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boy01_Hair_MAT
-    second: {fileID: 2100000, guid: b285ef8a61de8104a920ad8c59740f90, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boy01_Hands_MAT
-    second: {fileID: 2100000, guid: 540e15a252f97cc49adec5a4a70d1091, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boy01_Head_MAT
-    second: {fileID: 2100000, guid: 0a57f2f08d930c54b96d0e5c986305f9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boy01_LowerBody_MAT
-    second: {fileID: 2100000, guid: 20d368c3b79374941bcf158086835516, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boy01_Scarf_MAT
-    second: {fileID: 2100000, guid: 233c41b45571ed94cbd347eb88f73e1f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boy01_Shoes_MAT
-    second: {fileID: 2100000, guid: 9fa80b79d08b44e49a675652743c3d1d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boy01_UpperBody_MAT
-    second: {fileID: 2100000, guid: 7a5f45cdba65d9c4e9683b1d258ecb3d, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Boy_Hair_diffuse
-    second: {fileID: 2800000, guid: 18c0726dfcd1bfd49b9b9e2214285e5b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Boy_Hands_diffuse
-    second: {fileID: 2800000, guid: 96dfbc73f7750e44690028d69efabf70, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Boy_Head_diffuse
-    second: {fileID: 2800000, guid: 4af9a6990d7cf9f4c86a45e928925932, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Boy_LowerBody_diffuse
-    second: {fileID: 2800000, guid: 9214007ff0c7e71459b8bd18f0e29259, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Boy_Scarf_diffuse
-    second: {fileID: 2800000, guid: 9d724e82a23503b4296e8c2ca0114f9c, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Boy_Shoes_diffuse
-    second: {fileID: 2800000, guid: e0c7d6b5a286b1f4da3fb540cb4db12c, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Boy_UpperBody_diffuse
-    second: {fileID: 2800000, guid: a2fad9cf98d851b4f9d7aaa8c446d3c2, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -101,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: IdleMain
+      name: Running
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 348
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -114,8 +44,8 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
@@ -1014,11 +944,12 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 8fa31338c708de5488551c1427318b50,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
