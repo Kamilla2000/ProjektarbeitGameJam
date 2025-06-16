@@ -20,7 +20,7 @@ public class BulletSpawner : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
             Vector3 direction = (player.position - spawnPoint.position).normalized;
-            bullet.GetComponent<Rigidbody>().velocity = direction * 10f; // Bullet speed
+            bullet.GetComponent<Rigidbody>().linearVelocity = direction * 10f; // Bullet speed
         }
     }
 }
