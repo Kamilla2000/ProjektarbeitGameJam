@@ -23,6 +23,8 @@ public class ThirdPersonController : MonoBehaviour
     private int _isWalkingParameterHash;
     private int _jumpTriggerHash;
 
+    public bool IsAudible { get; private set; }
+
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -80,5 +82,8 @@ public class ThirdPersonController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
         }
+
+        // Character is audible, when moving fast
+        IsAudible = speed >= 0.5f;
     }
 }
