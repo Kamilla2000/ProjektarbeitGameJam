@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EventOnlyInteractable : MonoBehaviour
+public class DamegeTrigger : MonoBehaviour
 {
     public float damageAmount = 10f; // Wie viel Schaden zugefügt wird
 

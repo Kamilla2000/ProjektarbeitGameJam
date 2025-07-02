@@ -81,4 +81,11 @@ public class PlayerHealthPA : MonoBehaviour
 
         healthText.text = Mathf.RoundToInt(health).ToString();
     }
+
+    public void Heal(float amount)
+    {
+        health += amount;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        lerpTimer = 0f;
+    }
 }
