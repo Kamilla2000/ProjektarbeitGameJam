@@ -3,49 +3,56 @@ using UnityEngine.AI;
 
 public class NPCStateMachine : BaseStateMachine
 {
-    // Position des Spielers
-    public Vector3 PlayerPosition { get => _player.position; }
-    public bool CanSeePlayer { get => _eyes.IsDetecting; }
-    public bool CanHearPlayer { get => _ears.IsDetecting; }
+    public Vector3 PlayerPosition => _player.position;
 
-    // States des NPC
+    [Header("Sicht- und Hörsinn")]
+    public bool CanSeePlayer => _eyes.IsDetecting;
+    public bool CanHearPlayer => _ears.IsDetecting;
+
+    [Header("Distanz Einstellungen")]
+    public float chaseDistance = 10f;
+    public float attackDistance = 2f;
+
+    [Header("NPC States")]
     public NPCIdleState IdleState;
-    public NPCAttackState AttackState;     // Neu: AttackState
     public NPCPatrolState PatrolState;
+    public NPCAttackState AttackState;
+    public NPCChaseState ChaseState;  // NEU: ChaseState
 
-    // NavMeshAgent & Animator
     private NavMeshAgent _agent;
     private Animator _animator;
-
-    // Sinne des NPC
     private Eyes _eyes;
     private Ears _ears;
-
-    // Spieler-Transform
     private Transform _player;
 
-    // Ursprüngliche Geschwindigkeit des NavMeshAgent
     private float _initalAgentSpeed;
-
-    // Hash für Animator Parameter
     private int _speedParameterHash;
 
 #if UNITY_EDITOR
-    void OnDrawGizmosSelected() => WaypointGizmos.DrawWayPoints(PatrolState.Waypoints);
+    void OnDrawGizmosSelected()
+    {
+        WaypointGizmos.DrawWayPoints(PatrolState.Waypoints);
+
+        if (_player != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, chaseDistance);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackDistance);
+        }
+    }
 #endif
 
     public override void Initialize()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-
         _eyes = GetComponentInChildren<Eyes>();
         _ears = GetComponentInChildren<Ears>();
-
         _player = GameObject.FindGameObjectWithTag("Player").transform;
 
         _initalAgentSpeed = _agent.speed;
-
         _speedParameterHash = Animator.StringToHash("speed");
 
         CurrentState = IdleState;
@@ -56,10 +63,23 @@ public class NPCStateMachine : BaseStateMachine
     {
         _animator.SetFloat(_speedParameterHash, _agent.velocity.magnitude);
 
-        // Beispiel: Automatischer Wechsel zu AttackState, wenn NPC den Spieler sehen kann
-        if (CanSeePlayer && !(CurrentState is NPCAttackState))
+        float distanceToPlayer = Vector3.Distance(transform.position, PlayerPosition);
+
+        if (distanceToPlayer <= attackDistance)
         {
-            SwitchToState(AttackState);
+            if (!(CurrentState is NPCAttackState))
+                SwitchToState(AttackState);
+        }
+       /*else if (distanceToPlayer <= chaseDistance)
+        {
+            if (!(CurrentState is NPCChaseState))
+                SwitchToState(ChaseState);
+        }*/
+        else
+        {
+            // Nur zurück zur Patrouille, wenn man aktuell jagt oder angreift
+            if (CurrentState is NPCChaseState || CurrentState is NPCAttackState)
+                SwitchToState(PatrolState);
         }
     }
 
@@ -71,6 +91,6 @@ public class NPCStateMachine : BaseStateMachine
     {
         _animator.SetTrigger("Attack");
         Debug.Log("NPC greift den Spieler an!");
-        // Hier kannst du weitere Logik für Schaden, Effekte etc. hinzufügen
+        // Schaden, Partikeleffekte etc.
     }
 }
