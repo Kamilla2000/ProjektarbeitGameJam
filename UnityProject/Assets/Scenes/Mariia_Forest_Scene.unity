@@ -2744,6 +2744,8 @@ MonoBehaviour:
       Owner: {fileID: 828450522}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse X
         LegacyGain: 100
         CancelDeltaTime: 0
@@ -2755,6 +2757,8 @@ MonoBehaviour:
       Owner: {fileID: 828450522}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse Y
         LegacyGain: -100
         CancelDeltaTime: 0
@@ -2766,6 +2770,8 @@ MonoBehaviour:
       Owner: {fileID: 828450522}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse ScrollWheel
         LegacyGain: -100
         CancelDeltaTime: 0
@@ -2773,6 +2779,8 @@ MonoBehaviour:
       Driver:
         AccelTime: 0
         DecelTime: 0
+  PlayerIndex: -1
+  AutoEnableInputs: 1
 --- !u!114 &828450520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4852,7 +4860,7 @@ Animator:
   m_GameObject: {fileID: 1890001416}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8fa31338c708de5488551c1427318b50, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5873f9ce2ddb28242bdcf84812522e8b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8b3ccb9284a35ba48ba3f6493199faf4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -4896,7 +4904,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890001416}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 931889e4247129c46b5878ab10be29d6, type: 3}
   m_Name: 
@@ -4918,7 +4926,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890001416}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -4933,6 +4941,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1890001423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890001416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2219d6aac555074fb2ac05ad1fcedd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 3
+  runMultiplier: 4
 --- !u!1001 &1896320089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5528,6 +5550,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1890001417}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8fa31338c708de5488551c1427318b50,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1890001423}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8fa31338c708de5488551c1427318b50,
         type: 3}
       insertIndex: -1
