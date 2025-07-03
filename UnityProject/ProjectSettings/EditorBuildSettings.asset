@@ -11,5 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameJam.unity
     guid: 2b6b42ad7d4d9834a81ce342a34912e5
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a450ee77a056bec48a2682f7f93ffe69,
+      type: 3}
   m_UseUCBPForAssetBundles: 0
