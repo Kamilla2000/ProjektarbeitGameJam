@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering.LookDev;
@@ -13,7 +13,6 @@ public class AnimationAndMovementController : MonoBehaviour
     CharacterController characterController;
     Animator animator;
 
-
     // variables to store optimized setter/getter IDs
     int isWalkingHash;
     int isRunningHash;
@@ -25,21 +24,18 @@ public class AnimationAndMovementController : MonoBehaviour
     bool isMovementPressed;
     bool isRunPressed;
 
-
-    //constants
+    // constants
     float rotationFactorPerFrame = 15f;
     int zero = 0;
-    //gravity variables
+
+    // gravity variables
     float gravity = -9.8f;
     float groundedGravity = -0.05f;
-
 
     [SerializeField] float walkSpeed = 2.0f;       // editable in Inspector
     [SerializeField] float runMultiplier = 5.0f;   // editable in Inspector
 
-
-    //jumping variables
-
+    // jumping variables
     bool isJumpPressed = false;
     float initialJumpVelocity;
     float maxJumpHeight = 4.0f;
@@ -50,21 +46,26 @@ public class AnimationAndMovementController : MonoBehaviour
     bool isJumpAnimating = false;
     int jumpCount = 0;
     Dictionary<int, float> initialJumpVelocities = new Dictionary<int, float>();
-    Dictionary<int, float> jumpGravities = new Dictionary<int, float>();  
+    Dictionary<int, float> jumpGravities = new Dictionary<int, float>();
     Coroutine currentJumpResetRoutine = null;
+
+    // task tracking
+    private TaskManager taskManager;
+    private HashSet<KeyCode> keysPressed = new HashSet<KeyCode>();
+    private bool dialogueFinished = false;
 
     void Awake()
     {
-        // initially set reference variables
         playerInput = new PlayerInput();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+
+        taskManager = FindAnyObjectByType<TaskManager>();
 
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         isJumpingHash = Animator.StringToHash("isJumping");
         jumpCountHash = Animator.StringToHash("jumpCount");
-
 
         playerInput.CharacterControls.Move.started += onMovementInput;
         playerInput.CharacterControls.Move.canceled += onMovementInput;
@@ -77,8 +78,13 @@ public class AnimationAndMovementController : MonoBehaviour
         playerInput.CharacterControls.Jump.canceled += onJump;
 
         setUpJumpVariables();
-
     }
+
+    public void SetDialogueFinished()
+    {
+        dialogueFinished = true;
+    }
+
     void setUpJumpVariables()
     {
         float timeToApex = maxJumpTime / 2;
@@ -103,14 +109,13 @@ public class AnimationAndMovementController : MonoBehaviour
 
     void handleJump()
     {
-        
         if (!isJumping && characterController.isGrounded && isJumpPressed)
         {
-            if(jumpCount > 3 && currentJumpResetRoutine!= null) 
+            if (jumpCount > 3 && currentJumpResetRoutine != null)
             {
                 StopCoroutine(currentJumpResetRoutine);
             }
-            //set animator here
+
             animator.SetBool(isJumpingHash, true);
             isJumpAnimating = true;
             isJumping = true;
@@ -119,13 +124,15 @@ public class AnimationAndMovementController : MonoBehaviour
             animator.SetInteger(jumpCountHash, jumpCount);
             currentMovement.y = initialJumpVelocities[jumpCount] * .5f;
             currentRunMovement.y = initialJumpVelocities[jumpCount] * .5f;
+
+            // === TRACKING JUMP TASK ===
+            if (dialogueFinished)
+                taskManager?.RegisterJump();
         }
         else if (!isJumpPressed && isJumping && characterController.isGrounded)
         {
             isJumping = false;
         }
-
-
     }
 
     IEnumerator jumpResetRoutine()
@@ -138,6 +145,7 @@ public class AnimationAndMovementController : MonoBehaviour
     {
         isJumpPressed = context.ReadValueAsButton();
     }
+
     void onRun(InputAction.CallbackContext context)
     {
         isRunPressed = context.ReadValueAsButton();
@@ -146,33 +154,47 @@ public class AnimationAndMovementController : MonoBehaviour
     void onMovementInput(InputAction.CallbackContext context)
     {
         currentMovementInput = context.ReadValue<Vector2>();
-
-        // walk movement scaled by editable walkSpeed
         currentMovement.x = currentMovementInput.x * walkSpeed;
         currentMovement.z = currentMovementInput.y * walkSpeed;
-
-        // run movement scaled by editable runMultiplier
         currentRunMovement.x = currentMovementInput.x * runMultiplier;
         currentRunMovement.z = currentMovementInput.y * runMultiplier;
-
         isMovementPressed = currentMovementInput.x != zero || currentMovementInput.y != zero;
+
+        if (!dialogueFinished) return;
+
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.wKey.isPressed) keysPressed.Add(KeyCode.W);
+            if (Keyboard.current.aKey.isPressed) keysPressed.Add(KeyCode.A);
+            if (Keyboard.current.sKey.isPressed) keysPressed.Add(KeyCode.S);
+            if (Keyboard.current.dKey.isPressed) keysPressed.Add(KeyCode.D);
+
+            // === TRACKING MOVE TASK ===
+            if (keysPressed.Contains(KeyCode.W) && keysPressed.Contains(KeyCode.A)
+                && keysPressed.Contains(KeyCode.S) && keysPressed.Contains(KeyCode.D))
+            {
+                taskManager?.RegisterMove();
+            }
+
+            // === TRACKING RUN TASK ===
+            if (isRunPressed && isMovementPressed)
+            {
+                taskManager?.RegisterRun();
+            }
+        }
     }
 
     void handleRotation()
     {
         Vector3 positionToLookAt;
-
-        // the change in position our character should point to
         positionToLookAt.x = currentMovement.x;
         positionToLookAt.y = 0.0f;
         positionToLookAt.z = currentMovement.z;
 
-        // the current rotation of our character
         Quaternion currentRotation = transform.rotation;
 
         if (isMovementPressed)
         {
-            // creates a new rotation based on where the player is currently pressing
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
         }
@@ -180,29 +202,22 @@ public class AnimationAndMovementController : MonoBehaviour
 
     void handleAnimation()
     {
-        // get parameter values for animator
         bool isWalking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
 
-        // start walking if movement is pressed is true and not already walking
         if (isMovementPressed && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
         }
-
-        // stop walking if movement is pressed is false and already walking
         else if (!isMovementPressed && isWalking)
         {
             animator.SetBool(isWalkingHash, false);
         }
 
-        // run if movement and run pressed are true and not currently running
         if ((isMovementPressed && isRunPressed) && !isRunning)
         {
             animator.SetBool(isRunningHash, true);
         }
-
-        // stop running if movement or run pressed are false and currently running
         else if ((!isMovementPressed || !isRunPressed) && isRunning)
         {
             animator.SetBool(isRunningHash, false);
@@ -214,21 +229,20 @@ public class AnimationAndMovementController : MonoBehaviour
         bool isFalling = currentMovement.y < 0.0f || !isJumpPressed;
         float fallMultiplier = 2.0f;
 
-        // apply proper gravity if the player is grounded or not
         if (characterController.isGrounded)
-        { 
-            if ( isJumpAnimating ) 
+        {
+            if (isJumpAnimating)
             {
                 animator.SetBool(isJumpingHash, false);
                 isJumpAnimating = false;
-                currentJumpResetRoutine= StartCoroutine(jumpResetRoutine());
-                if ( jumpCount == 3 )
+                currentJumpResetRoutine = StartCoroutine(jumpResetRoutine());
+                if (jumpCount == 3)
                 {
                     jumpCount = 0;
                     animator.SetInteger(jumpCountHash, jumpCount);
                 }
             }
-            
+
             currentMovement.y = groundedGravity;
             currentRunMovement.y = groundedGravity;
         }
@@ -252,7 +266,6 @@ public class AnimationAndMovementController : MonoBehaviour
 
     void Update()
     {
-
         handleRotation();
         handleAnimation();
 
@@ -264,19 +277,18 @@ public class AnimationAndMovementController : MonoBehaviour
         {
             characterController.Move(currentMovement * Time.deltaTime);
         }
+
         handleGravity();
         handleJump();
     }
 
     void OnEnable()
     {
-        // enable the character controls action map
         playerInput.CharacterControls.Enable();
     }
 
     void OnDisable()
     {
-        // disable the character controls action map
         playerInput.CharacterControls.Disable();
     }
 }
