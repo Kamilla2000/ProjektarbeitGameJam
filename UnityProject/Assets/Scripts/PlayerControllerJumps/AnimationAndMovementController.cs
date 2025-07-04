@@ -314,11 +314,17 @@ public class AnimationAndMovementController : MonoBehaviour
         {
             appliedMovement.x = currentRunMovement.x;
             appliedMovement.z = currentRunMovement.z;
+
+            //Audio
+            audioManager?.Play("Jump");
         }
         else
         {
             appliedMovement.x = currentMovement.x;
             appliedMovement.z = currentMovement.z;
+
+            //Audio
+            audioManager?.Play("Run");
         }
 
         // Move character controller

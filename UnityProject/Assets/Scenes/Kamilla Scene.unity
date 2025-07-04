@@ -7406,19 +7406,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Walk
-    clip: {fileID: 8300000, guid: 5777b90fd04f9c64bab942a124d5c2ec, type: 3}
+    clip: {fileID: 8300000, guid: 75fc2f25e9e871f4183281efbdf59037, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Run
-    clip: {fileID: 8300000, guid: 5777b90fd04f9c64bab942a124d5c2ec, type: 3}
+    clip: {fileID: 8300000, guid: 65cebd9dfaec00c4d99b714267662ca9, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Jump
-    clip: {fileID: 8300000, guid: 5777b90fd04f9c64bab942a124d5c2ec, type: 3}
+    clip: {fileID: 8300000, guid: e6f8e0c8744f0764ca59fc19a60739e4, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
