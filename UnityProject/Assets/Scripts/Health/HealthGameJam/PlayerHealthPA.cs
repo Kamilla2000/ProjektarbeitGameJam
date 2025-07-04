@@ -1,59 +1,42 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+﻿using UnityEngine;
 
 public class PlayerHealthPA : MonoBehaviour
 {
     [Header("Health Bar")]
-    public int maxHealth = 100;
-    public float chipSpeed = 2f;
-    public Image frontHealthBar;
-    public Image backHealthBar;
-    public TextMeshProUGUI healthText;
+    public int maxHealth = 100;               // Max health value
+    public float chipSpeed = 2f;              // Speed for health bar interpolation
+    public UnityEngine.UI.Image frontHealthBar;  // Front health bar image (green)
+    public UnityEngine.UI.Image backHealthBar;   // Back health bar image (red)
+    public TMPro.TextMeshProUGUI healthText;     // Health number text
 
-    [Header("Damage Overlay")]
-    public Image overlay;
-    public float duration = 2f;
-    public float fadeSpeed = 1.5f;
+    public float health;                      // Current health
 
-    private float health;
-    private float lerpTimer;
-    private float durationTimer;
+    private float lerpTimer;                  // Timer for smooth health bar update
+
+    private Animator animator;                // Animator reference
+    private AnimationAndMovementController movementController; // Movement script reference
+
+    // Delegate and event to notify when player dies
+    public delegate void OnDeathHandler();
+    public event OnDeathHandler OnDeath;
+
+    private bool isDead = false;              // Dead flag
 
     private void Start()
     {
-        health = maxHealth;
-        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
+        health = maxHealth;                   // Initialize health to max
+        animator = GetComponent<Animator>(); // Get Animator component
+        movementController = GetComponent<AnimationAndMovementController>(); // Get movement script
     }
 
     private void Update()
     {
-        health = Mathf.Clamp(health, 0, maxHealth);
-        UpdateHealthUI();
+        health = Mathf.Clamp(health, 0, maxHealth); // Clamp health
 
-        // Overlay fading logic
-        if (overlay.color.a > 0)
-        {
-            durationTimer += Time.deltaTime;
-
-            if (durationTimer > duration)
-            {
-                float newAlpha = overlay.color.a - Time.deltaTime * fadeSpeed;
-                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, newAlpha);
-            }
-        }
+        UpdateHealthUI();                     // Update the health bar visuals
     }
 
-    public void TakeDamege(float damage)
-    {
-        health -= damage;
-        lerpTimer = 0f;
-        durationTimer = 0f;
-
-        // Show overlay immediately
-        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1f);
-    }
-
+    // Update health bar and text UI
     private void UpdateHealthUI()
     {
         float fillF = frontHealthBar.fillAmount;
@@ -82,10 +65,47 @@ public class PlayerHealthPA : MonoBehaviour
         healthText.text = Mathf.RoundToInt(health).ToString();
     }
 
+    // Method to apply damage to player
+    public void TakeDamege(float damage)
+    {
+        if (isDead) return;                   // Ignore if already dead
+
+        health -= damage;                     // Decrease health
+        lerpTimer = 0f;                      // Reset UI timer
+
+        if (health <= 0)                     // If health depleted
+        {
+            Die();                          // Trigger death
+        }
+    }
+
+    // Heal method
     public void Heal(float amount)
     {
+        if (isDead) return;                   // Can't heal if dead
+
         health += amount;
         health = Mathf.Clamp(health, 0, maxHealth);
         lerpTimer = 0f;
+    }
+
+    // Called on death
+    private void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+
+        if (animator != null)
+            animator.SetBool("isDead", true);
+
+        if (movementController != null)
+            movementController.enabled = false;
+
+        var collider = GetComponent<Collider>();
+        if (collider != null)
+            collider.enabled = false;
+
+        OnDeath?.Invoke(); // Notify UI or other scripts
     }
 }
