@@ -29,19 +29,17 @@ public class MovingPlatform : MonoBehaviour
         _isMoving = PlayOnStart;
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (_isMoving)
         {
+            // Take the duration for sampling into account
+            // Duration für die Dauer der Bewegung?
             _progress += Time.deltaTime / Duration;
 
-            float position = AnimationCurve.Evaluate(_progress);
+            // Normalize value for position (0 - 1)
+            float position = AnimationCurve.Evaluate(_progress) % Duration;
             _cart.SplinePosition = position;
-
-            if (_progress >= 1f)
-            {
-                _progress = 0f; // Wiederhole Bewegung optional
-            }
         }
     }
 
@@ -50,12 +48,12 @@ public class MovingPlatform : MonoBehaviour
     // Enter trigger > make player child of this transform
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
             // geht mit Play On Start ; entscheidet, ob es bewegt werden soll
             _isMoving = true;
             other.transform.SetParent(transform);
-        }        
+        }
     }
 
     // Exit trigger > unparent the player

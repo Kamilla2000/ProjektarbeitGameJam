@@ -55,8 +55,13 @@ public class AnimationAndMovementController : MonoBehaviour
     private HashSet<KeyCode> keysPressed = new HashSet<KeyCode>();
     private bool dialogueFinished = false;
 
+    private AudioManager audioManager;
+
     void Awake()
     {
+        //Audio Manager suchen
+        audioManager = FindFirstObjectByType<AudioManager>();
+
         // Initialize PlayerInput and get required components
         playerInput = new PlayerInput();
         characterController = GetComponent<CharacterController>();
@@ -135,6 +140,9 @@ public class AnimationAndMovementController : MonoBehaviour
             // === Track jump task for taskManager if dialogue finished ===
             if (dialogueFinished)
                 taskManager?.RegisterJump();
+
+            //Audio
+            audioManager?.Play("Jump");
         }
         else if (!isJumpPressed && isJumping && characterController.isGrounded)
         {
@@ -236,6 +244,9 @@ public class AnimationAndMovementController : MonoBehaviour
         if (isMovementPressed && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
+
+            //Audio
+            audioManager?.Play("Walk");
         }
         else if (!isMovementPressed && isWalking)
         {
@@ -245,6 +256,9 @@ public class AnimationAndMovementController : MonoBehaviour
         if ((isMovementPressed && isRunPressed) && !isRunning)
         {
             animator.SetBool(isRunningHash, true);
+
+            //Audio
+            audioManager?.Play("Run");
         }
         else if ((!isMovementPressed || !isRunPressed) && isRunning)
         {
