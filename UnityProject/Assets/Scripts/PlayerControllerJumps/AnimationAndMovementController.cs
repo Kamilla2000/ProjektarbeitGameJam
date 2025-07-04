@@ -8,34 +8,35 @@ using UnityEngine.Rendering;
 
 public class AnimationAndMovementController : MonoBehaviour
 {
-    // declare reference variables
+    // Declare reference variables
     PlayerInput playerInput;
     CharacterController characterController;
     Animator animator;
 
-    // variables to store optimized setter/getter IDs
+    // Variables to store optimized setter/getter IDs for Animator parameters
     int isWalkingHash;
     int isRunningHash;
 
-    // variables to store player input values
+    // Variables to store player input values
     Vector2 currentMovementInput;
     Vector3 currentMovement;
     Vector3 currentRunMovement;
+    Vector3 appliedMovement;
     bool isMovementPressed;
     bool isRunPressed;
 
-    // constants
+    // Constants
     float rotationFactorPerFrame = 15f;
     int zero = 0;
 
-    // gravity variables
+    // Gravity variables
     float gravity = -9.8f;
     float groundedGravity = -0.05f;
 
-    [SerializeField] float walkSpeed = 2.0f;       // editable in Inspector
-    [SerializeField] float runMultiplier = 5.0f;   // editable in Inspector
+    [SerializeField] float walkSpeed = 2.0f;       // Editable in Inspector
+    [SerializeField] float runMultiplier = 5.0f;   // Editable in Inspector
 
-    // jumping variables
+    // Jumping variables
     bool isJumpPressed = false;
     float initialJumpVelocity;
     float maxJumpHeight = 4.0f;
@@ -49,24 +50,27 @@ public class AnimationAndMovementController : MonoBehaviour
     Dictionary<int, float> jumpGravities = new Dictionary<int, float>();
     Coroutine currentJumpResetRoutine = null;
 
-    // task tracking
+    // Task tracking
     private TaskManager taskManager;
     private HashSet<KeyCode> keysPressed = new HashSet<KeyCode>();
     private bool dialogueFinished = false;
 
     void Awake()
     {
+        // Initialize PlayerInput and get required components
         playerInput = new PlayerInput();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
         taskManager = FindAnyObjectByType<TaskManager>();
 
+        // Cache Animator parameter hashes for performance
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         isJumpingHash = Animator.StringToHash("isJumping");
         jumpCountHash = Animator.StringToHash("jumpCount");
 
+        // Subscribe to PlayerInput events
         playerInput.CharacterControls.Move.started += onMovementInput;
         playerInput.CharacterControls.Move.canceled += onMovementInput;
         playerInput.CharacterControls.Move.performed += onMovementInput;
@@ -80,11 +84,13 @@ public class AnimationAndMovementController : MonoBehaviour
         setUpJumpVariables();
     }
 
+    // Call this when dialogue is finished to allow player control
     public void SetDialogueFinished()
     {
         dialogueFinished = true;
     }
 
+    // Setup initial jump velocities and gravity values for multi-jump system
     void setUpJumpVariables()
     {
         float timeToApex = maxJumpTime / 2;
@@ -107,6 +113,7 @@ public class AnimationAndMovementController : MonoBehaviour
         jumpGravities.Add(3, thirdJumpGravity);
     }
 
+    // Handle jump logic including multi-jump
     void handleJump()
     {
         if (!isJumping && characterController.isGrounded && isJumpPressed)
@@ -122,10 +129,10 @@ public class AnimationAndMovementController : MonoBehaviour
             jumpCount += 1;
 
             animator.SetInteger(jumpCountHash, jumpCount);
-            currentMovement.y = initialJumpVelocities[jumpCount] * .5f;
-            currentRunMovement.y = initialJumpVelocities[jumpCount] * .5f;
+            currentMovement.y = initialJumpVelocities[jumpCount] * 0.5f;
+            appliedMovement.y = initialJumpVelocities[jumpCount] * 0.5f;
 
-            // === TRACKING JUMP TASK ===
+            // === Track jump task for taskManager if dialogue finished ===
             if (dialogueFinished)
                 taskManager?.RegisterJump();
         }
@@ -135,33 +142,52 @@ public class AnimationAndMovementController : MonoBehaviour
         }
     }
 
+    // Coroutine to reset jump count after delay
     IEnumerator jumpResetRoutine()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
         jumpCount = 0;
     }
 
+    // InputSystem callback for jump input
     void onJump(InputAction.CallbackContext context)
     {
         isJumpPressed = context.ReadValueAsButton();
     }
 
+    // InputSystem callback for run input
     void onRun(InputAction.CallbackContext context)
     {
         isRunPressed = context.ReadValueAsButton();
     }
 
+    // InputSystem callback for movement input
     void onMovementInput(InputAction.CallbackContext context)
     {
         currentMovementInput = context.ReadValue<Vector2>();
-        currentMovement.x = currentMovementInput.x * walkSpeed;
-        currentMovement.z = currentMovementInput.y * walkSpeed;
-        currentRunMovement.x = currentMovementInput.x * runMultiplier;
-        currentRunMovement.z = currentMovementInput.y * runMultiplier;
-        isMovementPressed = currentMovementInput.x != zero || currentMovementInput.y != zero;
+        isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
 
+        // Get camera directions and flatten Y axis
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
+
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // Calculate move direction relative to camera
+        Vector3 moveDirection = camForward * currentMovementInput.y + camRight * currentMovementInput.x;
+
+        // Set movement vectors scaled by speed multipliers
+        currentMovement = moveDirection * walkSpeed;
+        currentRunMovement = moveDirection * runMultiplier;
+
+        // Prevent movement tracking during dialogue
         if (!dialogueFinished) return;
 
+        // Track pressed keys for task tracking
         if (Keyboard.current != null)
         {
             if (Keyboard.current.wKey.isPressed) keysPressed.Add(KeyCode.W);
@@ -169,14 +195,14 @@ public class AnimationAndMovementController : MonoBehaviour
             if (Keyboard.current.sKey.isPressed) keysPressed.Add(KeyCode.S);
             if (Keyboard.current.dKey.isPressed) keysPressed.Add(KeyCode.D);
 
-            // === TRACKING MOVE TASK ===
+            // === Track move task ===
             if (keysPressed.Contains(KeyCode.W) && keysPressed.Contains(KeyCode.A)
                 && keysPressed.Contains(KeyCode.S) && keysPressed.Contains(KeyCode.D))
             {
                 taskManager?.RegisterMove();
             }
 
-            // === TRACKING RUN TASK ===
+            // === Track run task ===
             if (isRunPressed && isMovementPressed)
             {
                 taskManager?.RegisterRun();
@@ -184,6 +210,7 @@ public class AnimationAndMovementController : MonoBehaviour
         }
     }
 
+    // Handle character rotation smoothly towards movement direction
     void handleRotation()
     {
         Vector3 positionToLookAt;
@@ -200,6 +227,7 @@ public class AnimationAndMovementController : MonoBehaviour
         }
     }
 
+    // Handle setting animator parameters based on movement states
     void handleAnimation()
     {
         bool isWalking = animator.GetBool(isWalkingHash);
@@ -224,6 +252,7 @@ public class AnimationAndMovementController : MonoBehaviour
         }
     }
 
+    // Handle gravity application for jump and fall mechanics
     void handleGravity()
     {
         bool isFalling = currentMovement.y < 0.0f || !isJumpPressed;
@@ -244,40 +273,44 @@ public class AnimationAndMovementController : MonoBehaviour
             }
 
             currentMovement.y = groundedGravity;
-            currentRunMovement.y = groundedGravity;
+            appliedMovement.y = groundedGravity;
         }
         else if (isFalling)
         {
             float previousYVelocity = currentMovement.y;
-            float newYVelocity = currentMovement.y + (jumpGravities[jumpCount] * fallMultiplier * Time.deltaTime);
-            float nextYVelocity = Mathf.Max((previousYVelocity + newYVelocity) * .5f, -20.0f);
-            currentMovement.y = nextYVelocity;
-            currentRunMovement.y = nextYVelocity;
+            currentMovement.y = currentMovement.y + (jumpGravities[jumpCount] * fallMultiplier * Time.deltaTime);
+            appliedMovement.y = Mathf.Max((previousYVelocity + currentMovement.y) * 0.5f, -20.0f);
         }
         else
         {
             float previousYVelocity = currentMovement.y;
-            float newYVelocity = currentMovement.y + (jumpGravities[jumpCount] * Time.deltaTime);
-            float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-            currentMovement.y = nextYVelocity;
-            currentRunMovement.y = nextYVelocity;
+            currentMovement.y = currentMovement.y + (jumpGravities[jumpCount] * Time.deltaTime);
+            appliedMovement.y = (previousYVelocity + currentMovement.y) * 0.5f;
         }
     }
 
+    // Main Update loop
     void Update()
     {
         handleRotation();
         handleAnimation();
 
+        // Apply running or walking speed to movement
         if (isRunPressed)
         {
-            characterController.Move(currentRunMovement * Time.deltaTime);
+            appliedMovement.x = currentRunMovement.x;
+            appliedMovement.z = currentRunMovement.z;
         }
         else
         {
-            characterController.Move(currentMovement * Time.deltaTime);
+            appliedMovement.x = currentMovement.x;
+            appliedMovement.z = currentMovement.z;
         }
 
+        // Move character controller
+        characterController.Move(appliedMovement * Time.deltaTime);
+
+        // Handle gravity and jumping
         handleGravity();
         handleJump();
     }
