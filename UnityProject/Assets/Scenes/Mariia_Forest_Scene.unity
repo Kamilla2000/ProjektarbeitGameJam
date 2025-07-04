@@ -9446,7 +9446,9 @@ MonoBehaviour:
   frontHealthBar: {fileID: 557520753}
   backHealthBar: {fileID: 29945631}
   healthText: {fileID: 730052139}
-  health: 0
+  damagePanel: {fileID: 0}
+  flashSpeed: 2
+  maxAlpha: 0.5
 --- !u!114 &1890001424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9478,6 +9480,7 @@ MonoBehaviour:
   castPoint: {fileID: 550429171}
   magicSpeed: 3
   cooldown: 1.5
+  damageAmount: 20
 --- !u!1 &1903239799
 GameObject:
   m_ObjectHideFlags: 0

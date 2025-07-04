@@ -7,8 +7,8 @@ public class EnemyChasingDieAndDamage: MonoBehaviour
     public Slider healthBar;
 
     private Animator animator;
-    public GameObject fireBall;
-    public Transform fireBallPoint;
+    //public GameObject fireBall;
+    //public Transform fireBallPoint;
 
     void Start()
     {

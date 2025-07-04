@@ -8,6 +8,8 @@ public class MagicAttack : MonoBehaviour
     [SerializeField] private float magicSpeed = 10f; // Speed of the magic projectile (reduced for smoothness)
     [SerializeField] private float cooldown = 1f; // Cooldown time between casts
 
+    public int damageAmount = 20;
+
     private float lastCastTime;
     private Animator animator;
 
@@ -42,5 +44,13 @@ public class MagicAttack : MonoBehaviour
 
         Destroy(magic, 5f); // Destroy the magic after 5 seconds to clean up
         Debug.Log($"Magic spawned at position: {magic.transform.position}, velocity: {rb.linearVelocity}");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            other.GetComponent<EnemyChasingDieAndDamage>().TakeDamage(damageAmount);
+        }
     }
 }
