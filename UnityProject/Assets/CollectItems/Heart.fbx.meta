@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: babbffe0ccf225749b835ace69f8a69f
+guid: f54cc21799fbd584ca050f46a86be061
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Newspaper
-    second: {fileID: 2100000, guid: dd336ed2c5822454bb7e692b115ca778, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
