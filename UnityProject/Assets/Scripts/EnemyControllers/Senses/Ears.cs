@@ -7,11 +7,20 @@ public class Ears : Sense
     protected override void Start()
     {
         base.Start();
-        playerController = _player.GetComponent<AnimationAndMovementController>();
 
-        if (playerController == null)
+        _player = GameObject.FindGameObjectWithTag("Princess"); // Tag angepasst
+        if (_player != null)
         {
-            Debug.LogError("Ears.cs: Player controller not found or missing AnimationAndMovementController component.");
+            playerController = _player.GetComponent<AnimationAndMovementController>();
+
+            if (playerController == null)
+            {
+                Debug.LogError("Ears.cs: 'Princess' gefunden, aber kein AnimationAndMovementController-Component.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Ears.cs: Kein GameObject mit Tag 'Princess' gefunden.");
         }
     }
 
@@ -21,7 +30,7 @@ public class Ears : Sense
 
         if (IsInRange() && playerController != null && playerController.IsAudible)
         {
-            Debug.Log(" Player heard");
+            Debug.Log("Princess wurde gehört.");
             IsDetecting = true;
         }
         else
@@ -32,9 +41,11 @@ public class Ears : Sense
 
     private void OnDrawGizmosSelected()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _directionToPlayer = _player.transform.position - HeadReferenceTransform.position;
-
-        SenseGizmos.DrawRangeDisc(HeadReferenceTransform.position, transform.up, Range);
+        _player = GameObject.FindGameObjectWithTag("Princess"); // Auch hier angepasst
+        if (_player != null)
+        {
+            _directionToPlayer = _player.transform.position - HeadReferenceTransform.position;
+            SenseGizmos.DrawRangeDisc(HeadReferenceTransform.position, transform.up, Range);
+        }
     }
 }

@@ -3,23 +3,25 @@ using UnityEngine;
 public class Eyes : Sense
 {
     public LayerMask DetectionLayer;
-
     public float Fov = 120f;
 
     protected override void Start()
     {
         base.Start();
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObject.FindGameObjectWithTag("Princess"); // Tag geändert
     }
 
     protected override void Update()
     {
         base.Update();
+
+        if (_player == null) return;
+
         _directionToPlayer = _player.transform.position - HeadReferenceTransform.position;
 
         if (IsInRange() && IsInFieldOfView() && IsNotOccluded())
         {
-            Debug.Log(" Player seen");
+            Debug.Log("Princess gesehen");
             IsDetecting = true;
         }
         else
@@ -30,7 +32,10 @@ public class Eyes : Sense
 
     private void OnDrawGizmosSelected()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObject.FindGameObjectWithTag("Princess"); // Tag geändert
+
+        if (_player == null) return;
+
         _directionToPlayer = _player.transform.position - HeadReferenceTransform.position;
 
         SenseGizmos.DrawRangeCircle(HeadReferenceTransform.position, transform.up, Range);
@@ -54,7 +59,6 @@ public class Eyes : Sense
         forwards.y = 0;
 
         float angleBetween = Vector3.Angle(forwards, direction);
-
         return angleBetween < Fov * 0.5f;
     }
 
@@ -65,11 +69,9 @@ public class Eyes : Sense
 
         if (Physics.Raycast(ray, out hit, Range, DetectionLayer))
         {
-            return hit.collider.gameObject.CompareTag("Player");
+            return hit.collider.gameObject.CompareTag("Princess"); // Tag geändert
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 }

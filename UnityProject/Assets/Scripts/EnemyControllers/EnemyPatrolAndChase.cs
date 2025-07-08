@@ -4,42 +4,41 @@ using UnityEngine.AI;
 public class EnemyPatrolAndChase : MonoBehaviour
 {
     [Header("Patrol Settings")]
-    public Transform[] patrolPoints;        // Points to patrol between
-    public float patrolWaitTime = 2f;       // Wait time at each patrol point
+    public Transform[] patrolPoints;
+    public float patrolWaitTime = 2f;
 
     [Header("Combat Settings")]
-    public float attackRange = 2.5f;        // Distance at which enemy can attack
-    public float attackDamage = 10f;        // Damage dealt to player
-    public float attackCooldown = 2f;       // Time between attacks
+    public float attackRange = 2.5f;
+    public float attackDamage = 10f;
+    public float attackCooldown = 2f;
 
     [Header("Senses")]
-    public Eyes eyes;                       // Vision detection script
-    public Ears ears;                       // Hearing detection script
+    public Eyes eyes;
+    public Ears ears;
 
-    private int currentPatrolIndex = 0;     // Index of the current patrol point
-    private float patrolTimer = 0f;         // Timer to wait at patrol point
-    private float lastAttackTime = 0f;      // Time of last attack
-    private bool isChasing = false;         // Is enemy chasing the player
-    private bool isDying = false;           // Is enemy currently dying
+    private int currentPatrolIndex = 0;
+    private float patrolTimer = 0f;
+    private float lastAttackTime = 0f;
+    private bool isChasing = false;
+    private bool isDying = false;
 
-    private NavMeshAgent agent;             // NavMeshAgent for movement
-    private Animator animator;              // Animator to play animations
-    private Transform player;               // Reference to the player
-    private EnemyChasingDieAndDamage healthSystem; // Enemy's health script
+    private NavMeshAgent agent;
+    private Animator animator;
+    private Transform princess;
+    private EnemyChasingDieAndDamage healthSystem;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         healthSystem = GetComponent<EnemyChasingDieAndDamage>();
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        princess = GameObject.FindGameObjectWithTag("Princess")?.transform;
 
         MoveToNextPatrolPoint();
     }
 
     void Update()
     {
-        // Stop all behavior if dead
         if (healthSystem != null && healthSystem.IsDead())
         {
             if (!isDying)
@@ -54,26 +53,24 @@ public class EnemyPatrolAndChase : MonoBehaviour
             return;
         }
 
-        if (player == null) return;
+        if (princess == null) return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        float distanceToPrincess = Vector3.Distance(transform.position, princess.position);
 
-        // Detect player through vision or hearing
         if ((eyes != null && eyes.IsDetecting) || (ears != null && ears.IsDetecting))
         {
             isChasing = true;
             agent.isStopped = false;
-            agent.SetDestination(player.position);
+            agent.SetDestination(princess.position);
 
             animator.SetBool("isChasing", true);
             animator.SetBool("isPatrolling", false);
 
-            // Attack if in range and cooldown passed
-            if (distanceToPlayer <= attackRange && Time.time >= lastAttackTime + attackCooldown)
+            if (distanceToPrincess <= attackRange && Time.time >= lastAttackTime + attackCooldown)
             {
                 lastAttackTime = Time.time;
 
-                if (player.TryGetComponent(out PlayerHealthPA health))
+                if (princess.TryGetComponent(out PlayerHealthPA health))
                 {
                     health.TakeDamege(attackDamage);
                 }
@@ -81,7 +78,6 @@ public class EnemyPatrolAndChase : MonoBehaviour
         }
         else
         {
-            // Return to patrolling if player is not detected
             isChasing = false;
             Patrol();
         }
@@ -93,7 +89,6 @@ public class EnemyPatrolAndChase : MonoBehaviour
 
         float distanceToPoint = Vector3.Distance(transform.position, patrolPoints[currentPatrolIndex].position);
 
-        // Wait at patrol point
         if (distanceToPoint <= 0.5f)
         {
             agent.isStopped = true;
@@ -109,7 +104,6 @@ public class EnemyPatrolAndChase : MonoBehaviour
         }
         else
         {
-            // Walk toward patrol point
             agent.isStopped = false;
             agent.SetDestination(patrolPoints[currentPatrolIndex].position);
             animator.SetBool("isPatrolling", true);
@@ -117,14 +111,12 @@ public class EnemyPatrolAndChase : MonoBehaviour
         }
     }
 
-    // Moves to the next patrol destination
     void MoveToNextPatrolPoint()
     {
         if (patrolPoints.Length == 0) return;
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
     }
 
-    // Destroys enemy after death animation is finished
     private System.Collections.IEnumerator DestroyAfterDeath()
     {
         yield return new WaitForSeconds(3f);
