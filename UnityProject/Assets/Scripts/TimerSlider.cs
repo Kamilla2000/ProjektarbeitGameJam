@@ -4,10 +4,15 @@ using TMPro;
 
 public class TimerSlider : MonoBehaviour
 {
+    [Header("Timer Einstellungen")]
     public Slider timerSlider;
-    public TextMeshProUGUI ageText; 
-    public float totalTime = 600f;
-    public int maxAge = 60;
+    public TextMeshProUGUI ageText;
+    public float totalTime = 600f; // z.B. 10 Minuten
+    public int maxAge = 60;        // z.B. Alter von 0 bis 60
+
+    [Header("NPC Animation")]
+    public Animator npcAnimator;         // Der Animator deines NPCs
+    public string triggerName = "TimeOver"; // Der Trigger im Animator
 
     private float currentTime = 0f;
     private bool isRunning = true;
@@ -34,7 +39,13 @@ public class TimerSlider : MonoBehaviour
         {
             currentTime = totalTime;
             isRunning = false;
-          
+
+            // 👉 Hier wird die NPC-Animation ausgelöst
+            if (npcAnimator != null && !string.IsNullOrEmpty(triggerName))
+            {
+                npcAnimator.SetTrigger(triggerName);
+                Debug.Log("⌛ Zeit abgelaufen! NPC spielt Animation.");
+            }
         }
 
         if (timerSlider != null)
