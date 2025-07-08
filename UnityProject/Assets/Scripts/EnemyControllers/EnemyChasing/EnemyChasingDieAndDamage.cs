@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class EnemyChasingDieAndDamage : MonoBehaviour
@@ -16,15 +17,22 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
     public int attackDamage = 10;
     private float lastAttackTime;
 
+    [Header("Movement")]
+    public float stoppingDistance = 1.5f;  
+
     private Animator animator;
+    private NavMeshAgent agent;
     private bool isDead = false;
     private Transform princessTarget;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         healthBar.maxValue = HP;
         healthBar.value = HP;
+
+        agent.stoppingDistance = stoppingDistance;
 
         GameObject princess = GameObject.FindGameObjectWithTag("Princess");
         if (princess != null)
@@ -44,6 +52,18 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
         if (isDead || princessTarget == null) return;
 
         float distance = Vector3.Distance(transform.position, princessTarget.position);
+
+         
+        if (distance > agent.stoppingDistance)
+        {
+            agent.SetDestination(princessTarget.position);
+        }
+        else
+        {
+            agent.ResetPath(); 
+        }
+
+        // Атака
         if (distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
         {
             animator.SetTrigger("attack");
@@ -86,6 +106,8 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
 
             Rigidbody rb = GetComponent<Rigidbody>();
             if (rb != null) Destroy(rb);
+
+            agent.enabled = false;
 
             Invoke(nameof(SpawnHeart), 2f);
         }

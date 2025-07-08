@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealthPA : MonoBehaviour
 {
@@ -8,48 +9,55 @@ public class PlayerHealthPA : MonoBehaviour
     public float chipSpeed = 2f;
     public Image frontHealthBar;
     public Image backHealthBar;
-    public TMPro.TextMeshProUGUI healthText;
+    public TextMeshProUGUI healthText;
 
     [Header("Damage Overlay")]
     public Image damagePanel;
     public float flashSpeed = 2f;
     public float maxAlpha = 0.5f;
 
-    private float health;
+    [Header("References")]
+    public PrincessDialogSystem dialogSystem; // kiss reply
+
+    private float currentHealth;
     private float lerpTimer;
     private bool isDead = false;
 
     private Animator animator;
+
+    public bool isKissed { get; private set; } = false;
+    private float kissResetTimer = 0f;
+    private float kissDuration = 2f;
 
     public delegate void OnDeathHandler();
     public event OnDeathHandler OnDeath;
 
     private void Start()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
         animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        health = Mathf.Clamp(health, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
         FadeDamagePanel();
+        HandleKissTimer();
     }
 
     private void UpdateHealthUI()
     {
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
-        float hFraction = health / maxHealth;
+        float hFraction = currentHealth / maxHealth;
 
         if (fillB > hFraction)
         {
             frontHealthBar.fillAmount = hFraction;
             backHealthBar.color = Color.red;
             lerpTimer += Time.deltaTime;
-            float percentComplete = lerpTimer / chipSpeed;
-            percentComplete *= percentComplete;
+            float percentComplete = Mathf.Pow(lerpTimer / chipSpeed, 2);
             backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
         }
         else if (fillF < hFraction)
@@ -57,19 +65,19 @@ public class PlayerHealthPA : MonoBehaviour
             backHealthBar.fillAmount = hFraction;
             backHealthBar.color = Color.green;
             lerpTimer += Time.deltaTime;
-            float percentComplete = lerpTimer / chipSpeed;
-            percentComplete *= percentComplete;
+            float percentComplete = Mathf.Pow(lerpTimer / chipSpeed, 2);
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, hFraction, percentComplete);
         }
 
-        healthText.text = Mathf.RoundToInt(health).ToString();
+        if (healthText != null)
+            healthText.text = Mathf.RoundToInt(currentHealth).ToString();
     }
 
     public void TakeDamege(float damage)
     {
         if (isDead) return;
 
-        health -= damage;
+        currentHealth -= damage;
         lerpTimer = 0f;
 
         if (damagePanel != null)
@@ -79,7 +87,21 @@ public class PlayerHealthPA : MonoBehaviour
             damagePanel.color = color;
         }
 
-        if (health <= 0)
+        isKissed = true;
+        kissResetTimer = kissDuration;
+
+        if (animator != null)
+        {
+            animator.SetBool("isKissed", true);
+        }
+
+        // kiss reply
+        if (dialogSystem != null)
+        {
+            dialogSystem.ShowRandomKissReply();
+        }
+
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -95,12 +117,34 @@ public class PlayerHealthPA : MonoBehaviour
         }
     }
 
+    private void HandleKissTimer()
+    {
+        if (isKissed)
+        {
+            kissResetTimer -= Time.deltaTime;
+            if (kissResetTimer <= 0f)
+            {
+                ResetKissState();
+            }
+        }
+    }
+
+    public void ResetKissState()
+    {
+        isKissed = false;
+
+        if (animator != null)
+        {
+            animator.SetBool("isKissed", false);
+        }
+    }
+
     public void Heal(float amount)
     {
         if (isDead) return;
 
-        health += amount;
-        health = Mathf.Clamp(health, 0, maxHealth);
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         lerpTimer = 0f;
     }
 

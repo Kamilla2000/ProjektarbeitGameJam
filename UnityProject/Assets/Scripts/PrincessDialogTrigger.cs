@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PrincessDialogTrigger : MonoBehaviour
 {
-    public GameObject dialogUI; // ????? ??? ??????????
+    public GameObject dialogUI; 
 
     private void Start()
     {
         if (dialogUI != null)
-            dialogUI.SetActive(false); // ?????? ? ??????
+            dialogUI.SetActive(false);  
     }
 
     private void OnTriggerEnter(Collider other)
