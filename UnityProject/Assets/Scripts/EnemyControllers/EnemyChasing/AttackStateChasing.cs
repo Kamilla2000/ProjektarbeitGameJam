@@ -2,43 +2,35 @@ using UnityEngine;
 
 public class AttackStateChasing : StateMachineBehaviour
 {
-    Transform player;
+    Transform target;
     public float attackDistance = 2f;
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject princessObj = GameObject.FindGameObjectWithTag("Princess");
+        if (princessObj != null)
+        {
+            target = princessObj.transform;
+        }
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // sich auf dem Player ausrichten
-        animator.transform.LookAt(player);
+        if (target == null) return;
 
-        float distance = Vector3.Distance(player.position, animator.transform.position);
-        if (distance < attackDistance)
+        animator.transform.LookAt(target);
+
+        float distance = Vector3.Distance(target.position, animator.transform.position);
+
+        // Nur wenn Ziel *zu weit weg ist*, zurück zu Chase
+        if (distance > attackDistance)
         {
             animator.SetBool("isAttacking", false);
         }
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        // Kein Code nötig, aber kann später für Cleanup verwendet werden
     }
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }

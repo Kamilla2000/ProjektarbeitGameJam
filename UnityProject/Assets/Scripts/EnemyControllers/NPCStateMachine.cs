@@ -30,7 +30,7 @@ public class NPCStateMachine : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-        _player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        _player = GameObject.FindGameObjectWithTag("Princess")?.transform;
 
         SetNewIdleDuration();
         GoToNextPatrolPoint();
