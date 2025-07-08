@@ -1996,14 +1996,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 0, b: 0.269979, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c1b9d0683c845e4ea060bd4ddabe8de, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2120d81fb120c924aaeb95eac23a41e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11803,7 +11803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea5965fab2cea44db491b8271e58349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1532027261}
 --- !u!114 &1196146895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14140,7 +14139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea5965fab2cea44db491b8271e58349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1532027261}
 --- !u!114 &1576294439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15053,6 +15051,8 @@ MonoBehaviour:
   ageText: {fileID: 1627785425}
   totalTime: 600
   maxAge: 60
+  npcAnimator: {fileID: 0}
+  triggerName: TimeOver
 --- !u!114 &1730740093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16742,7 +16742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea5965fab2cea44db491b8271e58349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1532027261}
 --- !u!1 &2102158375 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 3e1b6b9e52a1088459b1c1f6955d601d,
