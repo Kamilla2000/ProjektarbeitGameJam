@@ -1367,6 +1367,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pesant_02_Walking
       objectReference: {fileID: 0}
+    - target: {fileID: 6948302376648552263, guid: 0b7943439cd5f7045908a16ba2988c5a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7721004426161550845, guid: 0b7943439cd5f7045908a16ba2988c5a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1422,6 +1427,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b7943439cd5f7045908a16ba2988c5a, type: 3}
+--- !u!1001 &4274313261680077123
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136199137199617360, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 767917373592121322, guid: c93f0919f8fa0f047bb56eae0ea9104a,
+        type: 3}
+      propertyPath: m_Name
+      value: Prince_Idle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c93f0919f8fa0f047bb56eae0ea9104a, type: 3}
 --- !u!1001 &6595454223712387378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1571,3 +1644,4 @@ SceneRoots:
   - {fileID: 7114502528523277660}
   - {fileID: 6595454223712387378}
   - {fileID: 2568535446797668153}
+  - {fileID: 4274313261680077123}
