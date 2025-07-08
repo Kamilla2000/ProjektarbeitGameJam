@@ -9,7 +9,7 @@ public class DamageTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Princess"))
         {
             PlayerHealthPA playerHealth = other.GetComponent<PlayerHealthPA>();
             if (playerHealth != null)
@@ -22,7 +22,7 @@ public class DamageTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Princess"))
         {
             // Stoppe Schaden, wenn der Spieler rausgeht
             if (damageCoroutine != null)

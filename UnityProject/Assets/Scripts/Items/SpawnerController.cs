@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Falls du TextMeshPro verwendest
+using TMPro;
 
 public class SpawnerController : MonoBehaviour
 {
@@ -9,10 +9,13 @@ public class SpawnerController : MonoBehaviour
     public Transform targetPoint;
 
     public Button spawnButton;
-    public TextMeshProUGUI ammoText; // Falls du normalen Text nutzt, ändere auf "Text"
-    
+    public TextMeshProUGUI ammoText;
+
     public int maxSpawns = 3;
     private int currentSpawns;
+
+    public PlayerHealthPA princessHealth;
+    public PrincessDialogSystem princessDialog;
 
     private void Start()
     {
@@ -24,15 +27,22 @@ public class SpawnerController : MonoBehaviour
 
     private void Spawn()
     {
-        if (currentSpawns >= maxSpawns)
+        if (currentSpawns >= maxSpawns) return;
+
+
+        if (princessHealth != null)
         {
-            Debug.Log("Keine Spawns mehr übrig!");
-            return;
+            princessHealth.Heal(30f);
         }
 
-        GameObject spawnedObj = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
 
-        // Bewegung zu Ziel (optional smooth)
+        if (princessDialog != null)
+        {
+            princessDialog.ShowRandomHealReply();
+        }
+
+
+        GameObject spawnedObj = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
         StartCoroutine(MoveToTarget(spawnedObj.transform, targetPoint.position));
 
         currentSpawns++;
@@ -41,7 +51,7 @@ public class SpawnerController : MonoBehaviour
 
     private void UpdateAmmoUI()
     {
-        ammoText.text = "Schüsse übrig: " + (maxSpawns - currentSpawns);
+        ammoText.text = "Letters left: " + (maxSpawns - currentSpawns);
     }
 
     private System.Collections.IEnumerator MoveToTarget(Transform obj, Vector3 target)
@@ -52,5 +62,6 @@ public class SpawnerController : MonoBehaviour
             obj.position = Vector3.MoveTowards(obj.position, target, speed * Time.deltaTime);
             yield return null;
         }
+        Destroy(obj.gameObject);
     }
 }

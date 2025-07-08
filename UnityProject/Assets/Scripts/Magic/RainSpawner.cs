@@ -24,7 +24,7 @@ public class RainSpawner : MonoBehaviour
 
     void ActivateRain()
     {
-         
+
         if (ScoreManager.Instance != null && ScoreManager.Instance.score >= requiredScore)
         {
             if (rainParticles != null && !rainParticles.isPlaying && !hasPlayed)

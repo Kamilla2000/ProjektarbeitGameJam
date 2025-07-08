@@ -40,7 +40,7 @@ public class PrincessPathFollower : MonoBehaviour
             return;
         }
 
-         
+        // Stop moving when kissed
         if (health != null && health.isKissed)
         {
             agent.isStopped = true;
@@ -48,7 +48,7 @@ public class PrincessPathFollower : MonoBehaviour
             return;
         }
 
-         
+        // Resume movement if not kissed
         if (agent.isStopped && health != null && !health.isKissed)
         {
             agent.isStopped = false;
@@ -82,4 +82,5 @@ public class PrincessPathFollower : MonoBehaviour
 
         animator.SetBool("isWalking", true);
     }
+    public bool IsAudible => agent.enabled && agent.velocity.magnitude > 0.1f;
 }

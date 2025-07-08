@@ -7,13 +7,19 @@ public class HealthTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerHealthPA player = other.GetComponent<PlayerHealthPA>();
-        if (player != null)
+        PlayerHealthPA health = other.GetComponent<PlayerHealthPA>();
+
+        if (health == null && other.transform.parent != null)
         {
-            player.Heal(healAmount);
+            health = other.transform.parent.GetComponent<PlayerHealthPA>();
+        }
+
+        if (health != null)
+        {
+            health.Heal(healAmount);
             if (destroyOnUse)
             {
-                gameObject.SetActive(false); // oder: Destroy(gameObject);
+                Destroy(gameObject);
             }
         }
     }

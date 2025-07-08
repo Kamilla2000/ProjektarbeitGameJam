@@ -146,6 +146,12 @@ public class PlayerHealthPA : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         lerpTimer = 0f;
+
+
+        if (dialogSystem != null)
+        {
+            dialogSystem.ShowRandomHealReply();
+        }
     }
 
     private void Die()
