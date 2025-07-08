@@ -3,116 +3,121 @@ using UnityEngine.AI;
 
 public class NPCStateMachine : MonoBehaviour
 {
-    [Header("Patrol")]
-    public Transform[] waypoints;
-    private int currentWaypointIndex = 0;
+    public Transform[] patrolPoints;
+    private int currentPatrolIndex = 0;
 
-    [Header("Idle Settings")]
-    public float idleMinTime = 1f;
-    public float idleMaxTime = 3f;
-    private float idleTimer = 0f;
-    private bool isIdle = false;
+    private NavMeshAgent _agent;
+    private Animator _animator;
+    private Transform _player;
 
     [Header("Angry Settings")]
     public float timeUntilAngry = 10f;
-    public float angryDuration = 5f;
-    public GameObject[] angryPrefabsToSpawn;
-    public Transform[] angrySpawnPoints;
     private float angryTimer = 0f;
-    private float angryActiveTimer = 0f;
     private bool isAngry = false;
 
-    private NavMeshAgent agent;
-    private Animator animator;
+    [Header("Angry Enemy Spawn Settings")]
+    public GameObject[] angryEnemyPrefabs;
+    public int spawnAmount = 3;
+    public Collider spawnAreaCollider;
+
+    [Header("Animation Bool States")]
+    public bool isIdle = true;
+
+    private float idleTime = 0f;
+    public float minIdleDuration = 2f;
+    public float maxIdleDuration = 5f;
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+        _agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
+        _player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        GoToNextWaypoint();
+        SetNewIdleDuration();
+        GoToNextPatrolPoint();
     }
 
     void Update()
     {
-        // ---- Handle Angry Timer ----
+        // Timer für Angry-Modus
         if (!isAngry)
         {
             angryTimer += Time.deltaTime;
             if (angryTimer >= timeUntilAngry)
             {
-                EnterAngryState();
-            }
-        }
-        else
-        {
-            angryActiveTimer += Time.deltaTime;
-            if (angryActiveTimer >= angryDuration)
-            {
-                ExitAngryState();
+                BecomeAngry();
             }
         }
 
-        // ---- Handle Idle Logic ----
+        // Patrouille, wenn nicht angry
+        if (!isAngry)
+        {
+            PatrolLogic();
+        }
+
+        // Update Animation States
+        _animator.SetBool("isIdle", isIdle);
+        _animator.SetBool("isAngry", isAngry);
+    }
+
+    void PatrolLogic()
+    {
         if (isIdle)
         {
-            idleTimer -= Time.deltaTime;
-            if (idleTimer <= 0f)
+            if (Time.time >= idleTime)
             {
                 isIdle = false;
-                animator.SetBool("isIdle", false);
-                GoToNextWaypoint();
+                GoToNextPatrolPoint();
             }
         }
         else
         {
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            if (!_agent.pathPending && _agent.remainingDistance < 0.2f)
             {
-                StartIdle();
+                isIdle = true;
+                _agent.isStopped = true;
+                SetNewIdleDuration();
             }
         }
     }
 
-    private void GoToNextWaypoint()
+    void SetNewIdleDuration()
     {
-        if (waypoints.Length == 0) return;
-
-        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
-        agent.SetDestination(waypoints[currentWaypointIndex].position);
+        idleTime = Time.time + Random.Range(minIdleDuration, maxIdleDuration);
     }
 
-    private void StartIdle()
+    void GoToNextPatrolPoint()
     {
-        isIdle = true;
-        idleTimer = Random.Range(idleMinTime, idleMaxTime);
-        animator.SetBool("isIdle", true);
-        agent.SetDestination(transform.position); // stop moving
+        if (patrolPoints.Length == 0) return;
+
+        _agent.destination = patrolPoints[currentPatrolIndex].position;
+        _agent.isStopped = false;
+
+        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
     }
 
-    private void EnterAngryState()
+    void BecomeAngry()
     {
         isAngry = true;
-        angryActiveTimer = 0f;
-        animator.SetBool("isAngry", true);
-        agent.speed *= 2f;
+        isIdle = false;
 
-        Debug.Log("NPC is ANGRY! 😡");
+        Debug.Log("😡 NPC ist jetzt ANGRY!");
 
-        // Spawn Prefabs
-        for (int i = 0; i < angryPrefabsToSpawn.Length && i < angrySpawnPoints.Length; i++)
+        // Spawn Enemies innerhalb des Colliders
+        for (int i = 0; i < spawnAmount; i++)
         {
-            Instantiate(angryPrefabsToSpawn[i], angrySpawnPoints[i].position, Quaternion.identity);
+            GameObject enemyPrefab = angryEnemyPrefabs[Random.Range(0, angryEnemyPrefabs.Length)];
+            Vector3 spawnPos = GetRandomPointInBounds(spawnAreaCollider.bounds);
+            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
         }
     }
 
-    private void ExitAngryState()
+    Vector3 GetRandomPointInBounds(Bounds bounds)
     {
-        isAngry = false;
-        angryTimer = 0f;
-        angryActiveTimer = 0f;
-        animator.SetBool("isAngry", false);
-        agent.speed /= 2f;
-
-        Debug.Log("NPC calmed down 🧘");
+        return new Vector3(
+            Random.Range(bounds.min.x, bounds.max.x),
+            bounds.min.y,
+            Random.Range(bounds.min.z, bounds.max.z)
+        );
     }
 }
