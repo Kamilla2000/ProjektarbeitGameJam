@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -129}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 163.5, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4484593299722265414
 CanvasRenderer:
@@ -212,8 +212,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back to Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 52c8ae53756ab0f4bac321556b83636d, type: 2}
-  m_sharedMaterial: {fileID: 6230389445173534539, guid: 52c8ae53756ab0f4bac321556b83636d,
+  m_fontAsset: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  m_sharedMaterial: {fileID: 6717207636551907417, guid: 11e48135cb12fc74b95298b7069150aa,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -470,8 +470,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 52c8ae53756ab0f4bac321556b83636d, type: 2}
-  m_sharedMaterial: {fileID: 6230389445173534539, guid: 52c8ae53756ab0f4bac321556b83636d,
+  m_fontAsset: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  m_sharedMaterial: {fileID: 6717207636551907417, guid: 11e48135cb12fc74b95298b7069150aa,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -496,8 +496,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 169.7
-  m_fontSizeBase: 169.7
+  m_fontSize: 134
+  m_fontSizeBase: 134
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -751,8 +751,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 52c8ae53756ab0f4bac321556b83636d, type: 2}
-  m_sharedMaterial: {fileID: 6230389445173534539, guid: 52c8ae53756ab0f4bac321556b83636d,
+  m_fontAsset: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  m_sharedMaterial: {fileID: 6717207636551907417, guid: 11e48135cb12fc74b95298b7069150aa,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
