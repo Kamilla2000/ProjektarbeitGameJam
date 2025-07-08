@@ -344,4 +344,5 @@ public class AnimationAndMovementController : MonoBehaviour
     {
         playerInput.CharacterControls.Disable();
     }
+    public bool IsAudible => isMovementPressed || isRunPressed || isJumpPressed;
 }

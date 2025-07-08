@@ -46,6 +46,8 @@ public class MagicAttack : MonoBehaviour
         Debug.Log($"Magic spawned at position: {magic.transform.position}, velocity: {rb.linearVelocity}");
     }
 
+    //
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Enemy")
@@ -53,4 +55,5 @@ public class MagicAttack : MonoBehaviour
             other.GetComponent<EnemyChasingDieAndDamage>().TakeDamage(damageAmount);
         }
     }
+    */
 }

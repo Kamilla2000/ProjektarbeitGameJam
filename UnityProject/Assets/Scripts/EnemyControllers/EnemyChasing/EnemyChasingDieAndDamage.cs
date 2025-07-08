@@ -6,6 +6,8 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
     [SerializeField] private int HP = 100;
     public Slider healthBar;
 
+    [SerializeField] private GameObject heartPickupPrefab; //  Prefab to spawn after death
+
     private Animator animator;
     private bool isDead = false;
 
@@ -21,7 +23,7 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
         healthBar.value = HP;
     }
 
-    // Wird aufgerufen, wenn Partikel das Objekt treffen
+    // Triggered when particle collides with enemy
     private void OnParticleCollision(GameObject other)
     {
         if (isDead) return;
@@ -29,12 +31,12 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
         if (other.CompareTag("Rain"))
         {
             Debug.Log("Rain hit – instant death");
-            TakeDamage(HP); // Sofort töten
+            TakeDamage(HP); // Kill instantly
         }
         else
         {
             Debug.Log("Standard particle hit – 20 damage");
-            TakeDamage(20); // Nur 20 Schaden
+            TakeDamage(20); // Deal 20 damage
         }
     }
 
@@ -51,19 +53,30 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
 
             animator.SetTrigger("die");
 
-            // Nur Rigidbody löschen
+            // Remove rigidbody so it doesn't interfere with ragdoll/animation
             Rigidbody rb = GetComponent<Rigidbody>();
             if (rb != null)
             {
                 Destroy(rb);
             }
 
-            // Collider bleibt aktiv!
+            // Delay heart spawn to let death animation play
+            Invoke(nameof(SpawnHeart), 2f); //  Adjust delay to match your death animation
         }
         else
         {
             animator.SetTrigger("damage");
         }
+    }
+
+    private void SpawnHeart()
+    {
+        if (heartPickupPrefab != null)
+        {
+            Instantiate(heartPickupPrefab, transform.position, Quaternion.identity);
+        }
+
+        Destroy(gameObject); // remove enemy after heart appears
     }
 
     public bool IsDead()

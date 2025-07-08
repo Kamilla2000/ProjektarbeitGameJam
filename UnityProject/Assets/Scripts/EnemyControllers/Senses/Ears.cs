@@ -2,22 +2,26 @@ using UnityEngine;
 
 public class Ears : Sense
 {
-    private ThirdPersonController playerController;
+    private AnimationAndMovementController playerController;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
-        base.Start(); // base: basisklasse; zuerst Reference von Sense Klasse start und danach dieses Script
-        playerController = _player.GetComponent<ThirdPersonController>();
+        base.Start();
+        playerController = _player.GetComponent<AnimationAndMovementController>();
+
+        if (playerController == null)
+        {
+            Debug.LogError("Ears.cs: Player controller not found or missing AnimationAndMovementController component.");
+        }
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();
 
-        if(IsInRange() && playerController.IsAudible)
+        if (IsInRange() && playerController != null && playerController.IsAudible)
         {
+            Debug.Log(" Player heard");
             IsDetecting = true;
         }
         else
@@ -25,6 +29,7 @@ public class Ears : Sense
             IsDetecting = false;
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
