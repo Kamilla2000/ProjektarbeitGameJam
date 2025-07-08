@@ -10,7 +10,11 @@ public class RainSpawner : MonoBehaviour
     [Header("Wie lange soll es regnen?")]
     public float rainDuration = 3f;
 
+    [Header("Wie viele Punkte braucht man, um Regen zu aktivieren?")]
+    public int requiredScore = 3;
+
     private Coroutine rainRoutine;
+    private bool hasPlayed = false;
 
     void Start()
     {
@@ -20,14 +24,23 @@ public class RainSpawner : MonoBehaviour
 
     void ActivateRain()
     {
-        if (rainParticles != null && !rainParticles.isPlaying)
+         
+        if (ScoreManager.Instance != null && ScoreManager.Instance.score >= requiredScore)
         {
-            rainParticles.Play();
+            if (rainParticles != null && !rainParticles.isPlaying && !hasPlayed)
+            {
+                rainParticles.Play();
+                hasPlayed = true;
 
-            if (rainRoutine != null)
-                StopCoroutine(rainRoutine);
+                if (rainRoutine != null)
+                    StopCoroutine(rainRoutine);
 
-            rainRoutine = StartCoroutine(StopRainAfterDelay(rainDuration));
+                rainRoutine = StartCoroutine(StopRainAfterDelay(rainDuration));
+            }
+        }
+        else
+        {
+            Debug.Log("Nicht Genug!");
         }
     }
 
