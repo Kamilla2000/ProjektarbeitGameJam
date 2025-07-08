@@ -1648,12 +1648,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints: []
+  minIdleDuration: 2
+  maxIdleDuration: 5
   timeUntilAngry: 10
+  angryDuration: 5
   angryEnemyPrefabs: []
   spawnAmount: 3
   spawnAreaCollider: {fileID: 0}
-  minIdleDuration: 2
-  maxIdleDuration: 5
+  spawnCooldown: 1.5
 --- !u!114 &143282579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3212,12 +3214,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints: []
+  minIdleDuration: 2
+  maxIdleDuration: 5
   timeUntilAngry: 10
+  angryDuration: 5
   angryEnemyPrefabs: []
   spawnAmount: 3
   spawnAreaCollider: {fileID: 0}
-  minIdleDuration: 2
-  maxIdleDuration: 5
+  spawnCooldown: 1.5
 --- !u!195 &166495930
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -32108,6 +32112,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundCheckDistance: 0.2
   ForceStrenght: 100
+--- !u!136 &1388755977
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388755968}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1415715201
 GameObject:
   m_ObjectHideFlags: 0
@@ -32965,12 +32992,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints: []
+  minIdleDuration: 2
+  maxIdleDuration: 5
   timeUntilAngry: 10
+  angryDuration: 5
   angryEnemyPrefabs: []
   spawnAmount: 3
   spawnAreaCollider: {fileID: 0}
-  minIdleDuration: 2
-  maxIdleDuration: 5
+  spawnCooldown: 1.5
 --- !u!95 &1498959605
 Animator:
   serializedVersion: 7
@@ -42361,6 +42390,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1388755976}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e2952804ad563724fac9ddab04a99f2b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1388755977}
   m_SourcePrefab: {fileID: 100100000, guid: e2952804ad563724fac9ddab04a99f2b, type: 3}
 --- !u!1 &2145008938
 GameObject:
