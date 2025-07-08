@@ -14,15 +14,14 @@ public class NPCStateMachine : MonoBehaviour
     public float timeUntilAngry = 10f;
     private float angryTimer = 0f;
     private bool isAngry = false;
+    private bool hasSpawnedEnemies = false;
 
     [Header("Angry Enemy Spawn Settings")]
     public GameObject[] angryEnemyPrefabs;
     public int spawnAmount = 3;
     public Collider spawnAreaCollider;
 
-    [Header("Animation Bool States")]
-    public bool isIdle = true;
-
+    private bool isIdle = true;
     private float idleTime = 0f;
     public float minIdleDuration = 2f;
     public float maxIdleDuration = 5f;
@@ -45,17 +44,34 @@ public class NPCStateMachine : MonoBehaviour
             angryTimer += Time.deltaTime;
             if (angryTimer >= timeUntilAngry)
             {
-                BecomeAngry();
+                isAngry = true;
+                isIdle = false; // nicht mehr idle!
+                _animator.SetBool("isAngry", true);
+                _animator.SetBool("isIdle", false);
+            }
+            else
+            {
+                PatrolLogic();
+                UpdateAnimationStates();
             }
         }
-
-        // Patrouille, wenn nicht angry
-        if (!isAngry)
+        else
         {
-            PatrolLogic();
-        }
+            // Warten bis Animator wirklich im "Angry" State ist
+            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Angry") && !hasSpawnedEnemies)
+            {
+                SpawnAngryEnemies();
+                hasSpawnedEnemies = true;
+            }
 
-        // Update Animation States
+            // Kein weiteres Patrouillieren im Angry-Modus
+            _agent.isStopped = true;
+        }
+    }
+
+    void UpdateAnimationStates()
+    {
         _animator.SetBool("isIdle", isIdle);
         _animator.SetBool("isAngry", isAngry);
     }
@@ -90,20 +106,15 @@ public class NPCStateMachine : MonoBehaviour
     {
         if (patrolPoints.Length == 0) return;
 
-        _agent.destination = patrolPoints[currentPatrolIndex].position;
         _agent.isStopped = false;
-
+        _agent.destination = patrolPoints[currentPatrolIndex].position;
         currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
     }
 
-    void BecomeAngry()
+    void SpawnAngryEnemies()
     {
-        isAngry = true;
-        isIdle = false;
+        Debug.Log("😡 NPC ist jetzt ANGRY & spawnt Gegner!");
 
-        Debug.Log("😡 NPC ist jetzt ANGRY!");
-
-        // Spawn Enemies innerhalb des Colliders
         for (int i = 0; i < spawnAmount; i++)
         {
             GameObject enemyPrefab = angryEnemyPrefabs[Random.Range(0, angryEnemyPrefabs.Length)];
