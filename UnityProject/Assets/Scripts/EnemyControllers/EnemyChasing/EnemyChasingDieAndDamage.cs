@@ -18,12 +18,18 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
     private float lastAttackTime;
 
     [Header("Movement")]
-    public float stoppingDistance = 1.5f;  
+    public float stoppingDistance = 1.5f;
 
     private Animator animator;
     private NavMeshAgent agent;
     private bool isDead = false;
     private Transform princessTarget;
+
+    [Header("Patrolling")]
+    public float patrolWaitTime = 2f;
+    public float patrolRadius = 10f;
+    private float patrolTimer;
+    private Vector3 patrolTarget;
 
     void Start()
     {
@@ -31,7 +37,6 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         healthBar.maxValue = HP;
         healthBar.value = HP;
-
         agent.stoppingDistance = stoppingDistance;
 
         GameObject princess = GameObject.FindGameObjectWithTag("Princess");
@@ -43,28 +48,34 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
         {
             Debug.LogError("⚠ Kein Objekt mit Tag 'Princess' gefunden.");
         }
+
+        SetNewPatrolDestination();
     }
 
     void Update()
     {
         healthBar.value = HP;
-
         if (isDead || princessTarget == null) return;
 
-        float distance = Vector3.Distance(transform.position, princessTarget.position);
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-         
-        if (distance > agent.stoppingDistance)
+        if (stateInfo.IsName("Chase"))
         {
+            agent.isStopped = false;
             agent.SetDestination(princessTarget.position);
+        }
+        else if (stateInfo.IsName("Patrol"))
+        {
+            HandlePatrol();
         }
         else
         {
-            agent.ResetPath(); 
+            agent.isStopped = true;
+            agent.ResetPath();
         }
 
-        // Атака
-        if (distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
+        float distance = Vector3.Distance(transform.position, princessTarget.position);
+        if (stateInfo.IsName("Attack") && distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
         {
             animator.SetTrigger("attack");
             lastAttackTime = Time.time;
@@ -74,6 +85,37 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
             {
                 princessHealth.TakeDamege(attackDamage);
             }
+        }
+    }
+
+    void HandlePatrol()
+    {
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            patrolTimer += Time.deltaTime;
+            if (patrolTimer >= patrolWaitTime)
+            {
+                SetNewPatrolDestination();
+                patrolTimer = 0f;
+            }
+        }
+        else
+        {
+            patrolTimer = 0f;
+        }
+
+        agent.isStopped = false;
+    }
+
+    void SetNewPatrolDestination()
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
+        randomDirection += transform.position;
+
+        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit navHit, patrolRadius, NavMesh.AllAreas))
+        {
+            patrolTarget = navHit.position;
+            agent.SetDestination(patrolTarget);
         }
     }
 
@@ -108,7 +150,6 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
             if (rb != null) Destroy(rb);
 
             agent.enabled = false;
-
             Invoke(nameof(SpawnHeart), 2f);
         }
         else

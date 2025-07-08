@@ -9,6 +9,7 @@ TagManager:
   - rain
   - StepObstacle
   - Princess
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Unwalkable
   - Enemies
-  - 
+  - CameraCollider
   - 
   - 
   - 
