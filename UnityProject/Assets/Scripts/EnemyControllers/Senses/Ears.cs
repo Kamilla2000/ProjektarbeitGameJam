@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ears : Sense
 {
@@ -8,19 +8,19 @@ public class Ears : Sense
     {
         base.Start();
 
-        _player = GameObject.FindGameObjectWithTag("Princess"); // Tag angepasst
         if (_player != null)
         {
-            playerController = _player.GetComponent<AnimationAndMovementController>();
+            // Suche AnimationAndMovementController rekursiv in Children
+            playerController = _player.GetComponentInChildren<AnimationAndMovementController>();
 
             if (playerController == null)
             {
-                Debug.LogError("Ears.cs: 'Princess' gefunden, aber kein AnimationAndMovementController-Component.");
+                Debug.LogError("Ears.cs: AnimationAndMovementController wurde im Princess-Objekt oder seinen Kindern nicht gefunden.");
             }
         }
         else
         {
-            Debug.LogError("Ears.cs: Kein GameObject mit Tag 'Princess' gefunden.");
+            Debug.LogError("Ears.cs: Kein Player gefunden.");
         }
     }
 
@@ -30,22 +30,12 @@ public class Ears : Sense
 
         if (IsInRange() && playerController != null && playerController.IsAudible)
         {
-            Debug.Log("Princess wurde geh�rt.");
+            Debug.Log("👂 Player heard");
             IsDetecting = true;
         }
         else
         {
             IsDetecting = false;
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        _player = GameObject.FindGameObjectWithTag("Princess"); // Auch hier angepasst
-        if (_player != null)
-        {
-            _directionToPlayer = _player.transform.position - HeadReferenceTransform.position;
-            SenseGizmos.DrawRangeDisc(HeadReferenceTransform.position, transform.up, Range);
         }
     }
 }
