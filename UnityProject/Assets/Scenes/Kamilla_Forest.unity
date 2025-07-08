@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d177368b072031944bd3aa26c3de16fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmountPerSecond: 10
 --- !u!65 &143282580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27967,7 +27967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d177368b072031944bd3aa26c3de16fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmountPerSecond: 10
 --- !u!65 &1758486328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28400,7 +28400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d177368b072031944bd3aa26c3de16fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmountPerSecond: 10
 --- !u!65 &1772421107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28645,7 +28645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d177368b072031944bd3aa26c3de16fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmountPerSecond: 10
 --- !u!136 &1848967729
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30349,7 +30349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d177368b072031944bd3aa26c3de16fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmountPerSecond: 10
 --- !u!95 &1908246849
 Animator:
   serializedVersion: 7
@@ -37217,7 +37217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d177368b072031944bd3aa26c3de16fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmountPerSecond: 10
 --- !u!4 &8398963522755282984
 Transform:
   m_ObjectHideFlags: 0

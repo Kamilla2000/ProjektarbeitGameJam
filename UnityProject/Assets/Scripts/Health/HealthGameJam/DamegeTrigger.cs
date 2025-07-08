@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
-public class DamegeTrigger : MonoBehaviour
+public class DamageTrigger : MonoBehaviour
 {
-    public float damageAmount = 10f; // Wie viel Schaden zugefügt wird
+    public float damageAmountPerSecond = 10f; // Schaden pro Sekunde
+
+    private Coroutine damageCoroutine;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,9 +14,31 @@ public class DamegeTrigger : MonoBehaviour
             PlayerHealthPA playerHealth = other.GetComponent<PlayerHealthPA>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamege(damageAmount);
+                // Starte Coroutine für kontinuierlichen Schaden
+                damageCoroutine = StartCoroutine(DealDamageOverTime(playerHealth));
             }
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Stoppe Schaden, wenn der Spieler rausgeht
+            if (damageCoroutine != null)
+            {
+                StopCoroutine(damageCoroutine);
+                damageCoroutine = null;
+            }
+        }
+    }
+
+    private IEnumerator DealDamageOverTime(PlayerHealthPA playerHealth)
+    {
+        while (true)
+        {
+            playerHealth.TakeDamege(damageAmountPerSecond);
+            yield return new WaitForSeconds(1f);
+        }
+    }
 }
