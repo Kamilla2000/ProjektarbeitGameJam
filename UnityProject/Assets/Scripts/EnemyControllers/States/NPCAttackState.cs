@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class NPCAttackState : BaseState
 {
-    public float AttackRange = 2f;          // Distanz zum Angriff
+    /*public float AttackRange = 2f;          // Distanz zum Angriff
     public float StopDistance = 1.5f;       // Distanz, ab der NPC stehen bleibt
 
     private bool isAttacking = false;
@@ -48,5 +48,5 @@ public class NPCAttackState : BaseState
         {
             npcController.SwitchToState(npcController.IdleState);
         }
-    }
+    }*/
 }

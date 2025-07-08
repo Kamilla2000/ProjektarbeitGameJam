@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCFleeState : BaseState
 {
     // Distance before switch back to idle
-    public float DistanceToFlee;
+    /*public float DistanceToFlee;
 
     public override void OnUpdateState(BaseStateMachine controller)
     {
@@ -23,5 +23,5 @@ public class NPCFleeState : BaseState
         {
             npcController.SwitchToState(npcController.IdleState);
         }
-    }
+    }*/
 }

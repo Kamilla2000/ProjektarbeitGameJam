@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class BaseStateMachine : MonoBehaviour
 {
+    /*
     public BaseState CurrentState { get; protected set; }
 
 
@@ -31,5 +32,5 @@ public abstract class BaseStateMachine : MonoBehaviour
     /// <summary>
     /// Called every frame 
     /// </summary>
-    public abstract void Tick(); 
+    public abstract void Tick(); */
 }

@@ -5,54 +5,67 @@ using UnityEngine;
 public class NPCPatrolState : BaseState
 {
     public Transform[] Waypoints;
+    private int currentWaypointIndex = 0;
 
-    private int currentWaypointIndex;
-
-    private Vector3 targetPosition;
-
-    public override void OnEnterState(BaseStateMachine controller)
+    /*public override void OnEnterState(BaseStateMachine controller)
     {
-        NPCStateMachine npcController = controller as NPCStateMachine;
+        NPCStateMachine npc = controller as NPCStateMachine;
 
-        npcController.SetSpeedMultiplier(0.5f);
+        npc.SetSpeedMultiplier(0.5f);
 
-        if (targetPosition == Vector3.zero)
+        if (Waypoints == null || Waypoints.Length == 0)
         {
-            targetPosition = Waypoints[0].position;
+            Debug.LogWarning("Waypoints fehlen!");
+            return;
         }
 
-        npcController.SetDestionation(targetPosition);
+        // Wenn kein Ziel gesetzt ist, starte bei Index 0
+        if (npc.NextPatrolPoint == Vector3.zero)
+        {
+            npc.NextPatrolPoint = Waypoints[0].position;
+        }
+
+        npc.SetDestionation(npc.NextPatrolPoint);
     }
 
     public override void OnUpdateState(BaseStateMachine controller)
     {
-        NPCStateMachine npcController = controller as NPCStateMachine;
+        NPCStateMachine npc = controller as NPCStateMachine;
 
-        // Transition: Waypoint reached -> Idle
-        float sqrtDistance = (controller.transform.position - targetPosition).sqrMagnitude;
-        if (sqrtDistance < 0.1f)
+        if (npc.CanSeePlayer || npc.CanHearPlayer)
         {
-            targetPosition = GetNextWaypoint();
-            npcController.SwitchToState(npcController.IdleState);
+            npc.SwitchToState(npc.AttackState);
+            return;
         }
 
-        // Transition: Player spotted -> Flee
-        if (npcController.CanSeePlayer || npcController.CanHearPlayer)
+        float distance = Vector3.Distance(controller.transform.position, npc.NextPatrolPoint);
+        if (distance < 0.3f)
         {
-            //npcController.SwitchToState(npcController.FleeState);
-            npcController.SwitchToState(npcController.AttackState);
+            // Ziel für nächsten Durchlauf setzen
+            int nextIndex = GetWaypointIndex(npc.NextPatrolPoint);
+            nextIndex = (nextIndex + 1) % Waypoints.Length;
+            npc.NextPatrolPoint = Waypoints[nextIndex].position;
+
+            // Wechsel zu Idle
+            npc.SwitchToState(npc.IdleState);
         }
     }
 
     public override void OnExitState(BaseStateMachine controller)
     {
-        NPCStateMachine npcController = controller as NPCStateMachine;
-        npcController.SetSpeedMultiplier(1);
+        NPCStateMachine npc = controller as NPCStateMachine;
+        npc.SetSpeedMultiplier(1f);
     }
 
-    private Vector3 GetNextWaypoint()
+    private int GetWaypointIndex(Vector3 point)
     {
-        currentWaypointIndex = ++currentWaypointIndex % Waypoints.Length;
-        return Waypoints[currentWaypointIndex].position;
-    }
+        for (int i = 0; i < Waypoints.Length; i++)
+        {
+            if (Waypoints[i] != null && Vector3.Distance(Waypoints[i].position, point) < 0.2f)
+            {
+                return i;
+            }
+        }
+        return 0;
+    }*/
 }

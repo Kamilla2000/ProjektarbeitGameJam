@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 [Serializable]
@@ -7,7 +7,7 @@ public class NPCIdleState : BaseState
     public float MinWaitTime;
     public float MaxWaitTime;
 
-    private float leaveTime;
+    /*private float leaveTime;
 
     public override void OnEnterState(BaseStateMachine controller)
     {
@@ -33,5 +33,5 @@ public class NPCIdleState : BaseState
             //npcController.SwitchToState(npcController.FleeState);
             npcController.SwitchToState(npcController.AttackState);
         }
-    }
+    }*/
 }

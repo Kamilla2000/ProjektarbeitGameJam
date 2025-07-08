@@ -1,96 +1,118 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCStateMachine : BaseStateMachine
+public class NPCStateMachine : MonoBehaviour
 {
-    public Vector3 PlayerPosition => _player.position;
+    [Header("Patrol")]
+    public Transform[] waypoints;
+    private int currentWaypointIndex = 0;
 
-    [Header("Sicht- und Hörsinn")]
-    public bool CanSeePlayer => _eyes.IsDetecting;
-    public bool CanHearPlayer => _ears.IsDetecting;
+    [Header("Idle Settings")]
+    public float idleMinTime = 1f;
+    public float idleMaxTime = 3f;
+    private float idleTimer = 0f;
+    private bool isIdle = false;
 
-    [Header("Distanz Einstellungen")]
-    public float chaseDistance = 10f;
-    public float attackDistance = 2f;
+    [Header("Angry Settings")]
+    public float timeUntilAngry = 10f;
+    public float angryDuration = 5f;
+    public GameObject[] angryPrefabsToSpawn;
+    public Transform[] angrySpawnPoints;
+    private float angryTimer = 0f;
+    private float angryActiveTimer = 0f;
+    private bool isAngry = false;
 
-    [Header("NPC States")]
-    public NPCIdleState IdleState;
-    public NPCPatrolState PatrolState;
-    public NPCAttackState AttackState;
-    public NPCChaseState ChaseState;  // NEU: ChaseState
+    private NavMeshAgent agent;
+    private Animator animator;
 
-    private NavMeshAgent _agent;
-    private Animator _animator;
-    private Eyes _eyes;
-    private Ears _ears;
-    private Transform _player;
-
-    private float _initalAgentSpeed;
-    private int _speedParameterHash;
-
-#if UNITY_EDITOR
-    void OnDrawGizmosSelected()
+    void Start()
     {
-        WaypointGizmos.DrawWayPoints(PatrolState.Waypoints);
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
-        if (_player != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, chaseDistance);
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, attackDistance);
-        }
-    }
-#endif
-
-    public override void Initialize()
-    {
-        _agent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
-        _eyes = GetComponentInChildren<Eyes>();
-        _ears = GetComponentInChildren<Ears>();
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        _initalAgentSpeed = _agent.speed;
-        _speedParameterHash = Animator.StringToHash("speed");
-
-        CurrentState = IdleState;
-        CurrentState.OnEnterState(this);
+        GoToNextWaypoint();
     }
 
-    public override void Tick()
+    void Update()
     {
-        _animator.SetFloat(_speedParameterHash, _agent.velocity.magnitude);
-
-        float distanceToPlayer = Vector3.Distance(transform.position, PlayerPosition);
-
-        if (distanceToPlayer <= attackDistance)
+        // ---- Handle Angry Timer ----
+        if (!isAngry)
         {
-            if (!(CurrentState is NPCAttackState))
-                SwitchToState(AttackState);
+            angryTimer += Time.deltaTime;
+            if (angryTimer >= timeUntilAngry)
+            {
+                EnterAngryState();
+            }
         }
-       /*else if (distanceToPlayer <= chaseDistance)
-        {
-            if (!(CurrentState is NPCChaseState))
-                SwitchToState(ChaseState);
-        }*/
         else
         {
-            // Nur zurück zur Patrouille, wenn man aktuell jagt oder angreift
-            if (CurrentState is NPCChaseState || CurrentState is NPCAttackState)
-                SwitchToState(PatrolState);
+            angryActiveTimer += Time.deltaTime;
+            if (angryActiveTimer >= angryDuration)
+            {
+                ExitAngryState();
+            }
+        }
+
+        // ---- Handle Idle Logic ----
+        if (isIdle)
+        {
+            idleTimer -= Time.deltaTime;
+            if (idleTimer <= 0f)
+            {
+                isIdle = false;
+                animator.SetBool("isIdle", false);
+                GoToNextWaypoint();
+            }
+        }
+        else
+        {
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                StartIdle();
+            }
         }
     }
 
-    public void SetDestionation(Vector3 position) => _agent.SetDestination(position);
-
-    public void SetSpeedMultiplier(float multiplier) => _agent.speed = multiplier * _initalAgentSpeed;
-
-    public void AttackPlayer()
+    private void GoToNextWaypoint()
     {
-        _animator.SetTrigger("Attack");
-        Debug.Log("NPC greift den Spieler an!");
-        // Schaden, Partikeleffekte etc.
+        if (waypoints.Length == 0) return;
+
+        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+        agent.SetDestination(waypoints[currentWaypointIndex].position);
+    }
+
+    private void StartIdle()
+    {
+        isIdle = true;
+        idleTimer = Random.Range(idleMinTime, idleMaxTime);
+        animator.SetBool("isIdle", true);
+        agent.SetDestination(transform.position); // stop moving
+    }
+
+    private void EnterAngryState()
+    {
+        isAngry = true;
+        angryActiveTimer = 0f;
+        animator.SetBool("isAngry", true);
+        agent.speed *= 2f;
+
+        Debug.Log("NPC is ANGRY! ðŸ˜¡");
+
+        // Spawn Prefabs
+        for (int i = 0; i < angryPrefabsToSpawn.Length && i < angrySpawnPoints.Length; i++)
+        {
+            Instantiate(angryPrefabsToSpawn[i], angrySpawnPoints[i].position, Quaternion.identity);
+        }
+    }
+
+    private void ExitAngryState()
+    {
+        isAngry = false;
+        angryTimer = 0f;
+        angryActiveTimer = 0f;
+        animator.SetBool("isAngry", false);
+        agent.speed /= 2f;
+
+        Debug.Log("NPC calmed down ðŸ§˜");
     }
 }
