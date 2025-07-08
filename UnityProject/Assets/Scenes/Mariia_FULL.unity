@@ -1092,6 +1092,7 @@ MonoBehaviour:
   damagePanel: {fileID: 0}
   flashSpeed: 2
   maxAlpha: 0.5
+  dialogSystem: {fileID: 1980490380}
 --- !u!4 &130375349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b107258a16c894749982c0e6e6ed6483,
@@ -32457,6 +32458,7 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 1
   attackDamage: 10
+  stoppingDistance: 1.5
 --- !u!114 &1848967731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34224,6 +34226,7 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 1
   attackDamage: 10
+  stoppingDistance: 1.5
 --- !u!114 &1908246855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36037,8 +36040,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1980490378}
-  - component: {fileID: 1980490380}
   - component: {fileID: 1980490379}
+  - component: {fileID: 1980490380}
   m_Layer: 0
   m_Name: PrincessDialogTrigger
   m_TagString: Untagged
@@ -36091,10 +36094,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1980490377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39ceec6134ad8b4d84a88cfe5df5472, type: 3}
+  m_Script: {fileID: 11500000, guid: dc3986398d3f42345bbd72de418fce56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogUI: {fileID: 395879250}
+  dialogUI: {fileID: 1676202567}
+  dialogText: {fileID: 2102846666}
+  kissReplies:
+  - "Mmm, you sure you\u2019re not the real prince?"
+  - Is it too late to switch sides?
+  - Well, that kiss just confused my heart!
+  approachReplies:
+  - Well? Are you just gonna stand there?
+  - "Let\u2019s go, my heels aren\u2019t made for waiting!"
+  - "Come on, my prince is waiting \u2014 kinda"
 --- !u!1 &1996002839
 GameObject:
   m_ObjectHideFlags: 0
@@ -39403,6 +39415,7 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 1
   attackDamage: 10
+  stoppingDistance: 1.5
 --- !u!224 &2468904306496960885
 RectTransform:
   m_ObjectHideFlags: 0

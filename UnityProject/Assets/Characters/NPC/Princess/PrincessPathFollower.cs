@@ -8,7 +8,7 @@ public class PrincessPathFollower : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator animator;
-
+    private PlayerHealthPA health;
     private int currentTargetIndex = 0;
     private bool hasStartedWalking = false;
     private float delayBeforeWalking = 10f;
@@ -18,6 +18,7 @@ public class PrincessPathFollower : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        health = GetComponent<PlayerHealthPA>();
 
         if (animator != null)
         {
@@ -32,20 +33,31 @@ public class PrincessPathFollower : MonoBehaviour
         if (!hasStartedWalking)
         {
             timer += Time.deltaTime;
-
             if (timer >= delayBeforeWalking)
             {
                 StartWalking();
             }
-
             return;
         }
 
          
+        if (health != null && health.isKissed)
+        {
+            agent.isStopped = true;
+            animator.SetBool("isWalking", false);
+            return;
+        }
+
+         
+        if (agent.isStopped && health != null && !health.isKissed)
+        {
+            agent.isStopped = false;
+            animator.SetBool("isWalking", true);
+        }
+
         if (!agent.pathPending && agent.remainingDistance < stopDistance)
         {
             currentTargetIndex++;
-
             if (currentTargetIndex < pathPoints.Length)
             {
                 agent.SetDestination(pathPoints[currentTargetIndex].position);
@@ -53,8 +65,7 @@ public class PrincessPathFollower : MonoBehaviour
             else
             {
                 agent.ResetPath();
-                if (animator != null)
-                    animator.SetBool("isWalking", false);
+                animator.SetBool("isWalking", false);
             }
         }
     }
@@ -69,9 +80,6 @@ public class PrincessPathFollower : MonoBehaviour
             agent.SetDestination(pathPoints[currentTargetIndex].position);
         }
 
-        if (animator != null)
-        {
-            animator.SetBool("isWalking", true);
-        }
+        animator.SetBool("isWalking", true);
     }
 }
