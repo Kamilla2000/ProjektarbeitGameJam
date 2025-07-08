@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mariia_GameJam.unity
     guid: c6bed8ce604a6ac42af3ca0a6ef7d695
+  - enabled: 1
+    path: Assets/Scenes/CastleFight.unity
+    guid: 327b91255a405dc4fbb9092019834c75
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a450ee77a056bec48a2682f7f93ffe69,
       type: 3}

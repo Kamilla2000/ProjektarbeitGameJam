@@ -22792,6 +22792,9 @@ MonoBehaviour:
   healthBar: {fileID: 2114412224}
   heartPickupPrefab: {fileID: 2046178912554916833, guid: 0cbc82466734df74197312fb977974b5,
     type: 3}
+  attackRange: 2
+  attackCooldown: 1
+  attackDamage: 10
 --- !u!114 &1005643778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35339,7 +35342,6 @@ Transform:
   - {fileID: 1908246853}
   - {fileID: 166495932}
   - {fileID: 1621743047}
-  - {fileID: 1388755975}
   - {fileID: 867886738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36816,6 +36818,9 @@ MonoBehaviour:
   healthBar: {fileID: 649981552}
   heartPickupPrefab: {fileID: 2046178912554916833, guid: 0cbc82466734df74197312fb977974b5,
     type: 3}
+  attackRange: 2
+  attackCooldown: 1
+  attackDamage: 10
 --- !u!114 &1848967731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38679,6 +38684,9 @@ MonoBehaviour:
   HP: 100
   healthBar: {fileID: 1125021855}
   heartPickupPrefab: {fileID: 0}
+  attackRange: 2
+  attackCooldown: 1
+  attackDamage: 10
 --- !u!114 &1908246855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40778,6 +40786,73 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 639744258}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2069000456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2069000459}
+  - component: {fileID: 2069000458}
+  - component: {fileID: 2069000457}
+  m_Layer: 0
+  m_Name: SceneTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2069000457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069000456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3157d370561c0e4289df1a9109beb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: CastleFight
+--- !u!65 &2069000458
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069000456}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6953363, y: 1, z: 5.657181}
+  m_Center: {x: 0.34766757, y: 0, z: -0.07529068}
+--- !u!4 &2069000459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069000456}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.13069928, z: 0, w: 0.99142206}
+  m_LocalPosition: {x: -40.41, y: 9.36, z: 36.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 15.02, z: 0}
 --- !u!1001 &2087787423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43079,7 +43154,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1698889164}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -9042587762045654420, guid: e2952804ad563724fac9ddab04a99f2b,
         type: 3}
@@ -44077,6 +44152,9 @@ MonoBehaviour:
   healthBar: {fileID: 111015923223585197}
   heartPickupPrefab: {fileID: 2046178912554916833, guid: 0cbc82466734df74197312fb977974b5,
     type: 3}
+  attackRange: 2
+  attackCooldown: 1
+  attackDamage: 10
 --- !u!224 &2468904306496960885
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46209,6 +46287,7 @@ SceneRoots:
   - {fileID: 398580822}
   - {fileID: 1313807517}
   - {fileID: 1698889164}
+  - {fileID: 2143562479}
   - {fileID: 715331650}
   - {fileID: 683753961}
   - {fileID: 19269396}
@@ -46216,3 +46295,4 @@ SceneRoots:
   - {fileID: 4145780050919116959}
   - {fileID: 1005643783}
   - {fileID: 165563710}
+  - {fileID: 2069000459}
