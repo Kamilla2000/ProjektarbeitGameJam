@@ -17,37 +17,21 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
     public int attackDamage = 10;
     private float lastAttackTime;
 
-    [Header("Movement")]
-    public float stoppingDistance = 1.5f;
+    [Header("Senses")]
+    public Eyes eyes;
+    public Ears ears;
 
     private Animator animator;
     private NavMeshAgent agent;
     private bool isDead = false;
     private Transform princessTarget;
 
-    [Header("Patrolling")]
-    public float patrolWaitTime = 2f;
-    public float patrolRadius = 10f;
-    private float patrolTimer;
-    private Vector3 patrolTarget;
-
-    private Eyes eyes;
-    private Ears ears;
-
     void Start()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = stoppingDistance;
-
-        eyes = GetComponent<Eyes>();
-        ears = GetComponent<Ears>();
-
-        if (healthBar != null)
-        {
-            healthBar.maxValue = HP;
-            healthBar.value = HP;
-        }
+        healthBar.maxValue = HP;
+        healthBar.value = HP;
 
         GameObject princess = GameObject.FindGameObjectWithTag("Princess");
         if (princess != null)
@@ -58,48 +42,25 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
         {
             Debug.LogError("⚠ Kein Objekt mit Tag 'Princess' gefunden.");
         }
-
-        SetNewPatrolDestination();
     }
 
     void Update()
     {
+        healthBar.value = HP;
+
         if (isDead || princessTarget == null) return;
 
-        if (healthBar != null)
-            healthBar.value = HP;
-
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
         float distance = Vector3.Distance(transform.position, princessTarget.position);
-        bool canSee = eyes != null && eyes.IsDetecting;
-        bool canHear = ears != null && ears.IsDetecting;
 
-        if ((canSee || canHear) && !stateInfo.IsName("Attack"))
+        // Chase logic only when senses detect player
+        if ((eyes != null && eyes.IsDetecting) || (ears != null && ears.IsDetecting))
         {
-            animator.Play("Chase");
-        }
-        else if (!canSee && !canHear)
-        {
-            animator.Play("Patrol");
-        }
-
-        if (stateInfo.IsName("Chase"))
-        {
-            agent.isStopped = false;
+            animator.SetBool("isChasing", true);
             agent.SetDestination(princessTarget.position);
         }
-        else if (stateInfo.IsName("Patrol"))
-        {
-            HandlePatrol();
-        }
-        else
-        {
-            agent.isStopped = true;
-            agent.ResetPath();
-        }
 
-        if (stateInfo.IsName("Attack") && distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
+        // Attack logic
+        if (distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
         {
             animator.SetTrigger("attack");
             lastAttackTime = Time.time;
@@ -109,51 +70,6 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
             {
                 princessHealth.TakeDamege(attackDamage);
             }
-        }
-    }
-
-    void HandlePatrol()
-    {
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            patrolTimer += Time.deltaTime;
-            if (patrolTimer >= patrolWaitTime)
-            {
-                SetNewPatrolDestination();
-                patrolTimer = 0f;
-            }
-        }
-        else
-        {
-            patrolTimer = 0f;
-        }
-
-        agent.isStopped = false;
-    }
-
-    void SetNewPatrolDestination()
-    {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
-        randomDirection += transform.position;
-
-        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit navHit, patrolRadius, NavMesh.AllAreas))
-        {
-            patrolTarget = navHit.position;
-            agent.SetDestination(patrolTarget);
-        }
-    }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        if (isDead) return;
-
-        if (other.CompareTag("Rain"))
-        {
-            TakeDamage(HP);
-        }
-        else
-        {
-            TakeDamage(20);
         }
     }
 
@@ -169,11 +85,8 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
             isDead = true;
 
             animator.SetTrigger("die");
-
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb != null) Destroy(rb);
-
             agent.enabled = false;
+
             Invoke(nameof(SpawnHeart), 2f);
         }
         else
@@ -192,8 +105,11 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public bool IsDead()
+    public bool IsDead() => isDead;
+
+    private void OnParticleCollision(GameObject other)
     {
-        return isDead;
+        if (isDead) return;
+        TakeDamage(other.CompareTag("Rain") ? HP : 20);
     }
 }
