@@ -15,19 +15,21 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
     public float attackRange = 2f;
     public float attackCooldown = 1f;
     public int attackDamage = 10;
-
-    [Header("Movement Settings")]
-    public float patrolWaitTime = 2f;
-    public float patrolRadius = 10f;
-
     private float lastAttackTime;
-    private float patrolTimer;
-    private bool isDead = false;
-    private Vector3 patrolTarget;
+
+    [Header("Movement")]
+    public float stoppingDistance = 1.5f;
 
     private Animator animator;
     private NavMeshAgent agent;
-    private Transform princess;
+    private bool isDead = false;
+    private Transform princessTarget;
+
+    [Header("Patrolling")]
+    public float patrolWaitTime = 2f;
+    public float patrolRadius = 10f;
+    private float patrolTimer;
+    private Vector3 patrolTarget;
 
     private Eyes eyes;
     private Ears ears;
@@ -36,6 +38,7 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = stoppingDistance;
 
         eyes = GetComponent<Eyes>();
         ears = GetComponent<Ears>();
@@ -46,44 +49,66 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
             healthBar.value = HP;
         }
 
-        GameObject princessObj = GameObject.FindGameObjectWithTag("Princess");
-        if (princessObj != null)
-            princess = princessObj.transform;
+        GameObject princess = GameObject.FindGameObjectWithTag("Princess");
+        if (princess != null)
+        {
+            princessTarget = princess.transform;
+        }
+        else
+        {
+            Debug.LogError("⚠ Kein Objekt mit Tag 'Princess' gefunden.");
+        }
 
         SetNewPatrolDestination();
     }
 
     void Update()
     {
-        if (isDead || princess == null) return;
+        if (isDead || princessTarget == null) return;
 
         if (healthBar != null)
             healthBar.value = HP;
 
-        float distance = Vector3.Distance(transform.position, princess.position);
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        float distance = Vector3.Distance(transform.position, princessTarget.position);
         bool canSee = eyes != null && eyes.IsDetecting;
         bool canHear = ears != null && ears.IsDetecting;
 
-        if (canSee || canHear)
+        if ((canSee || canHear) && !stateInfo.IsName("Attack"))
         {
-            agent.SetDestination(princess.position);
-            animator.SetBool("isPatrolling", false);
+            animator.Play("Chase");
+        }
+        else if (!canSee && !canHear)
+        {
+            animator.Play("Patrol");
+        }
 
-            if (distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
-            {
-                animator.SetTrigger("attack");
-                lastAttackTime = Time.time;
-
-                PlayerHealthPA health = princess.GetComponent<PlayerHealthPA>();
-                if (health != null)
-                {
-                    health.TakeDamege(attackDamage);
-                }
-            }
+        if (stateInfo.IsName("Chase"))
+        {
+            agent.isStopped = false;
+            agent.SetDestination(princessTarget.position);
+        }
+        else if (stateInfo.IsName("Patrol"))
+        {
+            HandlePatrol();
         }
         else
         {
-            HandlePatrol();
+            agent.isStopped = true;
+            agent.ResetPath();
+        }
+
+        if (stateInfo.IsName("Attack") && distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
+        {
+            animator.SetTrigger("attack");
+            lastAttackTime = Time.time;
+
+            PlayerHealthPA princessHealth = princessTarget.GetComponent<PlayerHealthPA>();
+            if (princessHealth != null)
+            {
+                princessHealth.TakeDamege(attackDamage);
+            }
         }
     }
 
@@ -103,55 +128,19 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
             patrolTimer = 0f;
         }
 
-        animator.SetBool("isPatrolling", true);
         agent.isStopped = false;
     }
 
     void SetNewPatrolDestination()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius + transform.position;
+        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
+        randomDirection += transform.position;
 
         if (NavMesh.SamplePosition(randomDirection, out NavMeshHit navHit, patrolRadius, NavMesh.AllAreas))
         {
             patrolTarget = navHit.position;
             agent.SetDestination(patrolTarget);
         }
-    }
-
-    public void TakeDamage(int amount)
-    {
-        if (isDead) return;
-
-        HP -= amount;
-        if (HP <= 0)
-        {
-            HP = 0;
-            Die();
-        }
-        else
-        {
-            animator.SetTrigger("damage");
-        }
-    }
-
-    void Die()
-    {
-        isDead = true;
-        animator.SetTrigger("die");
-        agent.enabled = false;
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null) Destroy(rb);
-
-        Invoke(nameof(SpawnHeart), 2f);
-    }
-
-    void SpawnHeart()
-    {
-        if (heartPickupPrefab != null)
-            Instantiate(heartPickupPrefab, transform.position, Quaternion.identity);
-
-        Destroy(gameObject);
     }
 
     private void OnParticleCollision(GameObject other)
@@ -168,5 +157,43 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
         }
     }
 
-    public bool IsDead() => isDead;
+    public void TakeDamage(int damageAmount)
+    {
+        if (isDead) return;
+
+        HP -= damageAmount;
+
+        if (HP <= 0)
+        {
+            HP = 0;
+            isDead = true;
+
+            animator.SetTrigger("die");
+
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (rb != null) Destroy(rb);
+
+            agent.enabled = false;
+            Invoke(nameof(SpawnHeart), 2f);
+        }
+        else
+        {
+            animator.SetTrigger("damage");
+        }
+    }
+
+    private void SpawnHeart()
+    {
+        if (heartPickupPrefab != null)
+        {
+            Instantiate(heartPickupPrefab, transform.position, Quaternion.identity);
+        }
+
+        Destroy(gameObject);
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
+    }
 }
