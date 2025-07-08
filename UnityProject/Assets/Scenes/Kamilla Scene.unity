@@ -902,13 +902,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2f61f88ca073c43a770608c4b644f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
-  idleMinTime: 1
-  idleMaxTime: 3
+  patrolPoints: []
   timeUntilAngry: 10
-  angryDuration: 5
-  angryPrefabsToSpawn: []
-  angrySpawnPoints: []
+  angryEnemyPrefabs: []
+  spawnAmount: 3
+  spawnAreaCollider: {fileID: 0}
+  minIdleDuration: 2
+  maxIdleDuration: 5
 --- !u!114 &143282579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,13 +1085,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2f61f88ca073c43a770608c4b644f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
-  idleMinTime: 1
-  idleMaxTime: 3
+  patrolPoints: []
   timeUntilAngry: 10
-  angryDuration: 5
-  angryPrefabsToSpawn: []
-  angrySpawnPoints: []
+  angryEnemyPrefabs: []
+  spawnAmount: 3
+  spawnAreaCollider: {fileID: 0}
+  minIdleDuration: 2
+  maxIdleDuration: 5
 --- !u!195 &166495930
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12169,7 +12169,7 @@ MonoBehaviour:
     type: 3}
   castPoint: {fileID: 936906573}
   magicSpeed: 3
-  cooldown: 1.5
+  cooldown: 0.5
   damageAmount: 20
 --- !u!114 &1388755973
 MonoBehaviour:
@@ -15113,7 +15113,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 5873f9ce2ddb28242bdcf84812522e8b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -16320,7 +16320,7 @@ Transform:
   m_GameObject: {fileID: 2118770058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26283634, y: 0.3415778, z: 1.8110635}
+  m_LocalPosition: {x: 3.147, y: 0.3415778, z: 1.8110635}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
