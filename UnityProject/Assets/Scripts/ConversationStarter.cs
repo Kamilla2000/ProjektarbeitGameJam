@@ -1,44 +1,36 @@
 ﻿using System.Collections;
 using UnityEngine;
-using DialogueEditor;
+using UnityEngine.SceneManagement;
+using DialogueEditor; 
 
 public class ConversationStarter : MonoBehaviour
 {
-    [SerializeField] private NPCConversation myConversation; // Link to the dialogue
-    [SerializeField] private TaskManager taskManager;        // Link to TaskManager
+    [SerializeField] private NPCConversation myConversation;
+    [SerializeField] private string nextSceneName = "Mariia_FULL";
 
-    private bool hasStarted = false; // Prevent starting multiple times
+    private bool hasStarted = false;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        // If player is inside trigger and hasn't started the convo yet
-        if (other.CompareTag("Player") && !hasStarted)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                // Start the conversation
-                ConversationManager.Instance.StartConversation(myConversation);
-                hasStarted = true;
+        if (hasStarted) return;
 
-                // Wait until the dialogue is over
-                StartCoroutine(WaitForConversationEnd());
-            }
+        if (other.CompareTag("Player"))
+        {
+            hasStarted = true;
+            ConversationManager.Instance.StartConversation(myConversation);
+            StartCoroutine(WaitForDialogueAndLoadScene());
         }
     }
 
-    private IEnumerator WaitForConversationEnd()
+    private IEnumerator WaitForDialogueAndLoadScene()
     {
-        // Wait until the dialogue ends
-        yield return new WaitUntil(() => !ConversationManager.Instance.IsConversationActive);
-
-        // Tell the player controller that dialogue is finished
-        var controller = FindAnyObjectByType<AnimationAndMovementController>();
-        if (controller != null)
+         
+        while (ConversationManager.Instance.IsConversationActive)
         {
-            controller.SetDialogueFinished();
+            yield return null;
         }
 
-        // Now start showing tasks
-        taskManager.StartTasks();
+         
+        SceneManager.LoadScene(nextSceneName);
     }
 }
