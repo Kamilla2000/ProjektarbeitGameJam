@@ -1,39 +1,48 @@
-using NUnit.Framework;
-using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 
 public class PatrollStateChasing : StateMachineBehaviour
 {
     float timer;
     public int patrollTimer = 10;
-    public int chaseRadius = 5; // distance Radius
-    Transform player;
+    public int chaseRadius = 5; // Distance at which chasing begins
+    Transform target; // Will now reference object with tag "Princess"
 
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
 
-
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        // Get the NavMeshAgent component
         agent = animator.GetComponent<NavMeshAgent>();
-        timer = 0;
+        timer = 0f;
+
+        // Find the princess (instead of the player)
+        GameObject princessObj = GameObject.FindGameObjectWithTag("Princess");
+        if (princessObj != null)
+        {
+            target = princessObj.transform;
+        }
+
+        // Collect all patrol waypoints
         GameObject[] gos = GameObject.FindGameObjectsWithTag("WayPoints");
+        wayPoints.Clear();
         foreach (GameObject go in gos)
         {
             wayPoints.Add(go.transform);
         }
 
-        agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        // Move to a random patrol point
+        if (wayPoints.Count > 0)
+        {
+            agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        }
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance && wayPoints.Count > 0)
         {
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         }
@@ -44,28 +53,23 @@ public class PatrollStateChasing : StateMachineBehaviour
             animator.SetBool("isPatrolling", false);
         }
 
-        float distance = Vector3.Distance(player.position, animator.transform.position);
-        if (distance < chaseRadius)
+        // Check if target (princess) is in chase radius
+        if (target != null)
         {
-            animator.SetBool("isChasing", true);
+            float distance = Vector3.Distance(target.position, animator.transform.position);
+            if (distance < chaseRadius)
+            {
+                animator.SetBool("isChasing", true);
+            }
         }
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(agent.transform.position);
+        // Stop agent movement when leaving patrol state
+        if (agent != null)
+        {
+            agent.SetDestination(agent.transform.position);
+        }
     }
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }
