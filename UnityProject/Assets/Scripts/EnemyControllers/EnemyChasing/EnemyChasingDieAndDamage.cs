@@ -3,40 +3,71 @@ using UnityEngine.UI;
 
 public class EnemyChasingDieAndDamage : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private int HP = 100;
     public Slider healthBar;
 
-    [SerializeField] private GameObject heartPickupPrefab; //  Prefab to spawn after death
+    [Header("Death & Pickup")]
+    [SerializeField] private GameObject heartPickupPrefab;
+
+    [Header("Attack Settings")]
+    public float attackRange = 2f;
+    public float attackCooldown = 1f;
+    public int attackDamage = 10;
+    private float lastAttackTime;
 
     private Animator animator;
     private bool isDead = false;
+    private Transform princessTarget;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         healthBar.maxValue = HP;
         healthBar.value = HP;
+
+        GameObject princess = GameObject.FindGameObjectWithTag("Princess");
+        if (princess != null)
+        {
+            princessTarget = princess.transform;
+        }
+        else
+        {
+            Debug.LogError("⚠ Kein Objekt mit Tag 'Princess' gefunden.");
+        }
     }
 
     void Update()
     {
         healthBar.value = HP;
+
+        if (isDead || princessTarget == null) return;
+
+        float distance = Vector3.Distance(transform.position, princessTarget.position);
+        if (distance <= attackRange && Time.time >= lastAttackTime + attackCooldown)
+        {
+            animator.SetTrigger("attack");
+            lastAttackTime = Time.time;
+
+            PlayerHealthPA princessHealth = princessTarget.GetComponent<PlayerHealthPA>();
+            if (princessHealth != null)
+            {
+                princessHealth.TakeDamege(attackDamage);
+            }
+        }
     }
 
-    // Triggered when particle collides with enemy
     private void OnParticleCollision(GameObject other)
     {
         if (isDead) return;
 
         if (other.CompareTag("Rain"))
         {
-            Debug.Log("Rain hit – instant death");
-            TakeDamage(HP); // Kill instantly
+            TakeDamage(HP);
         }
         else
         {
-            Debug.Log("Standard particle hit – 20 damage");
-            TakeDamage(20); // Deal 20 damage
+            TakeDamage(20);
         }
     }
 
@@ -53,15 +84,10 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
 
             animator.SetTrigger("die");
 
-            // Remove rigidbody so it doesn't interfere with ragdoll/animation
             Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                Destroy(rb);
-            }
+            if (rb != null) Destroy(rb);
 
-            // Delay heart spawn to let death animation play
-            Invoke(nameof(SpawnHeart), 2f); //  Adjust delay to match your death animation
+            Invoke(nameof(SpawnHeart), 2f);
         }
         else
         {
@@ -76,7 +102,7 @@ public class EnemyChasingDieAndDamage : MonoBehaviour
             Instantiate(heartPickupPrefab, transform.position, Quaternion.identity);
         }
 
-        Destroy(gameObject); // remove enemy after heart appears
+        Destroy(gameObject);
     }
 
     public bool IsDead()

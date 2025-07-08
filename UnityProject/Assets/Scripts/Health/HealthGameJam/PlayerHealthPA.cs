@@ -11,16 +11,15 @@ public class PlayerHealthPA : MonoBehaviour
     public TMPro.TextMeshProUGUI healthText;
 
     [Header("Damage Overlay")]
-    public Image damagePanel;               // Panel that flashes red on damage
-    public float flashSpeed = 2f;           // Speed of fading out
-    public float maxAlpha = 0.5f;           // Max alpha when hit
+    public Image damagePanel;
+    public float flashSpeed = 2f;
+    public float maxAlpha = 0.5f;
 
     private float health;
     private float lerpTimer;
     private bool isDead = false;
 
     private Animator animator;
-    private AnimationAndMovementController movementController;
 
     public delegate void OnDeathHandler();
     public event OnDeathHandler OnDeath;
@@ -29,14 +28,13 @@ public class PlayerHealthPA : MonoBehaviour
     {
         health = maxHealth;
         animator = GetComponent<Animator>();
-        movementController = GetComponent<AnimationAndMovementController>();
     }
 
     private void Update()
     {
         health = Mathf.Clamp(health, 0, maxHealth);
         UpdateHealthUI();
-        FadeDamagePanel(); // Handle alpha fading
+        FadeDamagePanel();
     }
 
     private void UpdateHealthUI()
@@ -74,7 +72,6 @@ public class PlayerHealthPA : MonoBehaviour
         health -= damage;
         lerpTimer = 0f;
 
-        // Show damage panel with full alpha
         if (damagePanel != null)
         {
             var color = damagePanel.color;
@@ -115,9 +112,6 @@ public class PlayerHealthPA : MonoBehaviour
 
         if (animator != null)
             animator.SetBool("isDead", true);
-
-        if (movementController != null)
-            movementController.enabled = false;
 
         var collider = GetComponent<Collider>();
         if (collider != null)
