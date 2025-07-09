@@ -15844,22 +15844,22 @@ GameObject:
   m_Component:
   - component: {fileID: 1250304074}
   - component: {fileID: 1250304090}
-  - component: {fileID: 1250304089}
   - component: {fileID: 1250304088}
-  - component: {fileID: 1250304087}
   - component: {fileID: 1250304086}
   - component: {fileID: 1250304085}
-  - component: {fileID: 1250304084}
   - component: {fileID: 1250304083}
-  - component: {fileID: 1250304082}
   - component: {fileID: 1250304081}
   - component: {fileID: 1250304080}
   - component: {fileID: 1250304079}
   - component: {fileID: 1250304078}
   - component: {fileID: 1250304077}
-  - component: {fileID: 1250304076}
   - component: {fileID: 1250304075}
-  - component: {fileID: 1250304073}
+  - component: {fileID: 1250304096}
+  - component: {fileID: 1250304095}
+  - component: {fileID: 1250304094}
+  - component: {fileID: 1250304093}
+  - component: {fileID: 1250304092}
+  - component: {fileID: 1250304091}
   m_Layer: 0
   m_Name: ConversationEventInfo
   m_TagString: Untagged
@@ -15867,25 +15867,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1250304073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250304072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 20
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
 --- !u!4 &1250304074
 Transform:
   m_ObjectHideFlags: 0
@@ -15917,28 +15898,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 18
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
---- !u!114 &1250304076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250304072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 17
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
 --- !u!114 &1250304077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15955,7 +15917,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 16
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304078
@@ -15974,7 +15936,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 15
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304079
@@ -15993,7 +15955,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 14
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304080
@@ -16012,7 +15974,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 13
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304081
@@ -16031,28 +15993,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 12
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
---- !u!114 &1250304082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250304072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 11
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
 --- !u!114 &1250304083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16069,28 +16012,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 8
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
---- !u!114 &1250304084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250304072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 7
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
 --- !u!114 &1250304085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16107,7 +16031,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 6
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304086
@@ -16126,28 +16050,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 4
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
---- !u!114 &1250304087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250304072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 3
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
 --- !u!114 &1250304088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16164,28 +16069,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 2
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
---- !u!114 &1250304089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250304072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls: []
-  NodeID: 1
-  TMPFont: {fileID: 0}
-  Icon: {fileID: 0}
-  Audio: {fileID: 0}
 --- !u!114 &1250304090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16202,8 +16088,122 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NodeID: 0
-  TMPFont: {fileID: 0}
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   Icon: {fileID: 21300000, guid: a275f44a287bafb47ab987286d90f961, type: 3}
+  Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
+--- !u!114 &1250304091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250304072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
+  NodeID: 27
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
+--- !u!114 &1250304092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250304072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
+  NodeID: 26
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
+--- !u!114 &1250304093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250304072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
+  NodeID: 24
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
+--- !u!114 &1250304094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250304072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
+  NodeID: 23
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
+--- !u!114 &1250304095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250304072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
+  NodeID: 22
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
+--- !u!114 &1250304096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250304072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
+  NodeID: 21
+  TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!1001 &1360215048
 PrefabInstance:
@@ -16426,6 +16426,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2
   runMultiplier: 5
+  jumpHeight: 3
+  jumpTimeout: 0.2
 --- !u!95 &1388755974
 Animator:
   serializedVersion: 7
@@ -21724,59 +21726,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83189876d4d389f43b7dd2e925aa112e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentIDCounter: 21
-  json: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":259,\"yPos\":90},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Hey!
-    I may not look like much, but I\u2019ve got a heart full of passion\u2026 and
-    I only failed *Love Combat* twice.\",\"parentUIDs\":[0],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":277,\"yPos\":335},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Look,
-    I\u2019m here, I\u2019ve got wings, and I\u2019m ready to shoot some feelings.
-    Where\u2019s the prince?\\r\\n\",\"parentUIDs\":[2],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":612,\"yPos\":486},\"ID\":7,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ew.\",\"parentUIDs\":[6],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":724,\"yPos\":182},\"ID\":11,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Okay,
-    so you need me to zap these fake-lovers with some real Amor energy?\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":573,\"yPos\":624},\"ID\":17,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"So
-    I\u2019m fighting off cursed love-zombies, keeping your heart in check, and saving
-    your royal boyfriend?\",\"parentUIDs\":[16],\"SpeechUID\":-1},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":35,\"yPos\":514},\"ID\":20,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
-    For Love and Glory... I got this \\ud83d\\udc98\",\"parentUIDs\":[18],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":227,\"yPos\":-51},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah,
+  CurrentIDCounter: 28
+  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":21}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":326,\"yPos\":115},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah,
     there you are\u2026 my assigned *Amor-agent*. You don\u2019t exactly scream \u201Cqualified,\u201D
-    you know.\\r\\n\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":330,\"yPos\":204},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s
-    not reassuring.\",\"parentUIDs\":[1],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":304,\"yPos\":440},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Captured.
+    you know.\\r\\n\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":22}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":376,\"yPos\":361},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s
+    not reassuring.\",\"parentUIDs\":[21],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":403,\"yPos\":607},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Captured.
     By *Anti-Amor*. That evil wannabe Cupid snatched him and locked him in his dark
-    love fortress.\",\"parentUIDs\":[3],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":7}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":326,\"yPos\":543},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"And
+    love fortress.\",\"parentUIDs\":[22],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":26}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":435,\"yPos\":709},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"And
     to make it worse? He cursed me. Now *everyone* I pass falls in love with me.
-    Farmers. Blacksmiths. A goat.\",\"parentUIDs\":[4],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":11}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":726,\"yPos\":339},\"ID\":8,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"If
+    Farmers. Blacksmiths. A goat.\",\"parentUIDs\":[4],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":23}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":825,\"yPos\":506},\"ID\":8,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"If
     they get too close, I start to feel... things. Wrong things. Romantic things.
-    About *them*.\\r\\n\",\"parentUIDs\":[7],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":13}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":752,\"yPos\":64},\"ID\":12,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Exactly.
-    Here\u2019s how it works:\",\"parentUIDs\":[11],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":14}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":982,\"yPos\":141},\"ID\":13,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
-    Use **[WASD]** to walk, **[Shift]** to run, and **[Space]** to jump. Got it?\",\"parentUIDs\":[12],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":15}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":958,\"yPos\":330},\"ID\":14,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
+    About *them*.\\r\\n\",\"parentUIDs\":[26],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":13}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":851,\"yPos\":231},\"ID\":12,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Exactly.
+    Here\u2019s how it works:\",\"parentUIDs\":[23],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":14}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1081,\"yPos\":307},\"ID\":13,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
+    Use **[WASD]** to walk, **[Shift]** to run, and **[Space]** to jump. Got it?\",\"parentUIDs\":[12],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":15}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1059,\"yPos\":497},\"ID\":14,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
     Press **[Q]** to cast your *Amor magic* \u2014 break their illusions and remind
-    them I\u2019m taken!\\r\\n\",\"parentUIDs\":[13],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":16}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":920,\"yPos\":470},\"ID\":15,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
+    them I\u2019m taken!\\r\\n\",\"parentUIDs\":[13],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":16}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1019,\"yPos\":637},\"ID\":15,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
     Each defeated love-struck weirdo gives you **Love Points** \\ud83d\\udc96. Stack
     enough, and you can unleash your **Super Amor Rain** \u2014 boom! All nearby
-    enemies snap out of it\",\"parentUIDs\":[14],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":17}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":839,\"yPos\":583},\"ID\":16,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"And
+    enemies snap out of it\",\"parentUIDs\":[14],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":24}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":938,\"yPos\":750},\"ID\":16,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"And
     if I start falling for someone\u2026 *again*... use a **Love Letter \\ud83d\\udc8c**
-    to remind me who I *really* love. My prince.\",\"parentUIDs\":[15],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":20}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":286,\"yPos\":647},\"ID\":18,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s
-    the job. Don\u2019t screw it up, Amor.\",\"parentUIDs\":[17],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7}]}"
+    to remind me who I *really* love. My prince.\",\"parentUIDs\":[15],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":27}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":389,\"yPos\":830},\"ID\":18,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s
+    the job. Don\u2019t screw it up, Amor.\",\"parentUIDs\":[24],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":372,\"yPos\":229},\"ID\":21,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Hey!
+    I may not look like much, but I\u2019ve got a heart full of passion\u2026 and
+    I only failed *Love Combat* twice.\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":383,\"yPos\":470},\"ID\":22,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Look,
+    I\u2019m here, I\u2019ve got wings, and I\u2019m ready to shoot some feelings.
+    Where\u2019s the prince?\\r\\n\",\"parentUIDs\":[2],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":868,\"yPos\":390},\"ID\":23,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Okay,
+    so you need me to zap these fake-lovers with some real Amor energy?\",\"parentUIDs\":[8],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":710,\"yPos\":779},\"ID\":24,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"So
+    I\u2019m fighting off cursed love-zombies, keeping your heart in check, and saving
+    your royal boyfriend?\",\"parentUIDs\":[16],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":643,\"yPos\":666},\"ID\":26,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ew.\",\"parentUIDs\":[6],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":113,\"yPos\":816},\"ID\":27,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
+    For Love and Glory... I got this\",\"parentUIDs\":[18],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7}]}"
   saveVersion: 110
   DefaultName: 
   DefaultSprite: {fileID: 0}
-  DefaultFont: {fileID: 0}
+  DefaultFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
   NodeSerializedDataList:
   - {fileID: 1250304090}
-  - {fileID: 1250304089}
   - {fileID: 1250304088}
-  - {fileID: 1250304087}
   - {fileID: 1250304086}
   - {fileID: 1250304085}
-  - {fileID: 1250304084}
   - {fileID: 1250304083}
-  - {fileID: 1250304082}
   - {fileID: 1250304081}
   - {fileID: 1250304080}
   - {fileID: 1250304079}
   - {fileID: 1250304078}
   - {fileID: 1250304077}
-  - {fileID: 1250304076}
   - {fileID: 1250304075}
-  - {fileID: 1250304073}
-  ContinueFont: {fileID: 0}
-  EndConversationFont: {fileID: 0}
+  - {fileID: 1250304096}
+  - {fileID: 1250304095}
+  - {fileID: 1250304094}
+  - {fileID: 1250304093}
+  - {fileID: 1250304092}
+  - {fileID: 1250304091}
+  ContinueFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
+  EndConversationFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa,
+    type: 2}
   Event:
     m_PersistentCalls:
       m_Calls: []

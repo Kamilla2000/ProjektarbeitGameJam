@@ -11,18 +11,20 @@ public class SadSceneStarter : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject winPanel;
     [SerializeField] private Button returnToMenuButton;
+    [SerializeField] private Button replayCutsceneButton;  
 
     private bool hasStarted = false;
 
     private void Start()
     {
-         
         if (winPanel != null)
             winPanel.SetActive(false);
 
-        
         if (returnToMenuButton != null)
             returnToMenuButton.onClick.AddListener(ReturnToMenu);
+
+        if (replayCutsceneButton != null)
+            replayCutsceneButton.onClick.AddListener(LoadCutscene);  
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,30 +33,30 @@ public class SadSceneStarter : MonoBehaviour
         {
             hasStarted = true;
 
-           
             ConversationManager.Instance.StartConversation(myConversation);
-
-             
             ConversationManager.OnConversationEnded += OnConversationEnded;
         }
     }
 
     private void OnConversationEnded()
     {
-         
         ConversationManager.OnConversationEnded -= OnConversationEnded;
 
-        // Pause the game
         Time.timeScale = 0f;
 
-        // Show the win panel
         if (winPanel != null)
             winPanel.SetActive(true);
     }
 
     private void ReturnToMenu()
     {
-        Time.timeScale = 1f;  
-        SceneManager.LoadScene("Menu"); 
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
+    }
+
+    private void LoadCutscene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("CutScene1");
     }
 }
