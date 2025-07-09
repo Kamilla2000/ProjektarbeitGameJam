@@ -5,10 +5,6 @@ using System.Collections;
 
 public class DialogManager : MonoBehaviour
 {
-    [Header("Cameras")]
-    public GameObject sceneCamera;
-    public GameObject gameplayCamera;
-
     [Header("UI")]
     public GameObject dialogPanel;
     public TextMeshProUGUI dialogText;
@@ -24,7 +20,6 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        // Start cinematic scene
         StartCoroutine(BeginDialogSequence());
     }
 
@@ -32,8 +27,8 @@ public class DialogManager : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        if (sceneCamera != null) sceneCamera.SetActive(true);
-        if (gameplayCamera != null) gameplayCamera.SetActive(false);
+        // ??????? ?????????? ?????? ?????
+        FindObjectOfType<CameraSwitcher>()?.ShowBossCamera();
 
         dialogPanel.SetActive(true);
         currentLine = 0;
@@ -90,8 +85,8 @@ public class DialogManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        if (sceneCamera != null) sceneCamera.SetActive(false);
-        if (gameplayCamera != null) gameplayCamera.SetActive(true);
+        // ????????????? ?? ??????? ??????
+        FindObjectOfType<CameraSwitcher>()?.ShowGameplayCamera();
 
         dialogPanel.SetActive(false);
         nextButton.onClick.RemoveListener(NextLine);

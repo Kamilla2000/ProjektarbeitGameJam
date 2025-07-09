@@ -1,12 +1,12 @@
 using UnityEngine;
-using TMPro; // Optional if using TextMeshPro
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
     public int score = 0;
-    public TextMeshProUGUI scoreText; // Drag UI Text here
+    public TextMeshProUGUI scoreText;
 
     void Awake()
     {
@@ -19,10 +19,10 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
-        UpdateUI();
+        UpdateScoreUI();
     }
 
-    void UpdateUI()
+    public void UpdateScoreUI()
     {
         if (scoreText != null)
             scoreText.text = "Score: " + score.ToString();
