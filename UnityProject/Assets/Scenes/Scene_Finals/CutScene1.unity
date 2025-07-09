@@ -18500,7 +18500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myConversation: {fileID: 2144702710}
-  nextSceneName: Mariia_FULL
+  nextSceneName: Level1
 --- !u!65 &1949596958
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class TimerSlider : MonoBehaviour
         if (currentTime >= totalTime)
         {
             hasTriggered = true;
-            SceneManager.LoadScene("CastleFight_Cut");
+            SceneManager.LoadScene("CutScene2");
         }
     }
 }
