@@ -20,24 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene_Finals/CutScene2.unity
     guid: e35ba25c58f475e48904d9e8e7b44194
-  - enabled: 0
-    path: Assets/Scenes/Mariia_Dialogue.unity
-    guid: 64b6d440ff592fc469d4f8b490d5a535
-  - enabled: 0
-    path: Assets/Scenes/Mariia_GameJam.unity
-    guid: c6bed8ce604a6ac42af3ca0a6ef7d695
-  - enabled: 0
-    path: Assets/Scenes/CastleFight.unity
-    guid: 327b91255a405dc4fbb9092019834c75
-  - enabled: 0
-    path: Assets/Scenes/Mariia_FULL.unity
-    guid: 3b1b3767b1b0ca844a6c1d9a8716d919
-  - enabled: 0
-    path: Assets/Scenes/CastleFight_New.unity
-    guid: 4eba67f1a643f7c498228fca39e61954
-  - enabled: 0
-    path: Assets/Scenes/CastleFight_Cut.unity
-    guid: 8a911568109e4314d8f0808ab76ef909
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a450ee77a056bec48a2682f7f93ffe69,
       type: 3}
