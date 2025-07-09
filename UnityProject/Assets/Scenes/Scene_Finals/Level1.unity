@@ -90259,7 +90259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3157d370561c0e4289df1a9109beb47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: CastleFight
+  sceneToLoad: Level2
 --- !u!65 &2069000458
 BoxCollider:
   m_ObjectHideFlags: 0

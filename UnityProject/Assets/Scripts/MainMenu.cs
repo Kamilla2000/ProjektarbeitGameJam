@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync("Mariia_GameJam");
+        SceneManager.LoadSceneAsync("CutScene1");
     }
 
     public void QuitGame()
