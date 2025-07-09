@@ -4,36 +4,38 @@ public class HeartPickup : MonoBehaviour
 {
     public int scoreValue = 1;              // How many points this heart gives
     public float rotateSpeed = 90f;         // Rotation speed in degrees per second
-    public float floatSpeed = 0.5f;         // Vertical floating speed
-    public float floatHeight = 0.25f;       // Distance to float up and down
+    public float floatSpeed = 0.5f;         // Speed of vertical floating
+    public float floatHeight = 0.25f;       // Vertical range of floating
     public float lifetime = 10f;            // Time before auto-destroy
 
-    private Vector3 startPos;               // Initial position for floating
+    private Vector3 basePosition;           // Starting position for floating
     private float floatTimer;
 
     void Start()
     {
-        // Store the starting position
-        startPos = transform.position;
+        // Store the original spawn position
+        basePosition = transform.position;
 
-        // Destroy the heart after 10 seconds
+        // Auto-destroy after a set lifetime
         Destroy(gameObject, lifetime);
     }
 
     void Update()
     {
-        // Rotate the heart around the Y-axis
-        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+        // Rotate around Y-axis
+        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, Space.World);
 
-        // Make the heart float up and down
+        // Float up and down using sine wave
         floatTimer += Time.deltaTime * floatSpeed;
         float yOffset = Mathf.Sin(floatTimer) * floatHeight;
-        transform.position = new Vector3(startPos.x, startPos.y + yOffset, startPos.z);
+
+        // Apply floating position
+        transform.position = new Vector3(basePosition.x, basePosition.y + yOffset, basePosition.z);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // If the player collides with the heart
+        // If player collects the heart
         if (other.CompareTag("Player"))
         {
             ScoreManager.Instance.AddScore(scoreValue);

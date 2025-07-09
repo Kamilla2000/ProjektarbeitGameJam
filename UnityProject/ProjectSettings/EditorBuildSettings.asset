@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mariia_FULL.unity
     guid: 3b1b3767b1b0ca844a6c1d9a8716d919
+  - enabled: 1
+    path: Assets/Scenes/CastleFight_New.unity
+    guid: 4eba67f1a643f7c498228fca39e61954
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a450ee77a056bec48a2682f7f93ffe69,
       type: 3}
