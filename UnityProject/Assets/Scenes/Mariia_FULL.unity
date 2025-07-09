@@ -6732,7 +6732,7 @@ MonoBehaviour:
   rainParticles: {fileID: 959180391}
   spawnButton: {fileID: 500765226}
   rainDuration: 1
-  requiredScore: 0
+  requiredScore: 2
 --- !u!4 &165563710
 Transform:
   m_ObjectHideFlags: 0
@@ -61699,11 +61699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerSlider: {fileID: 1232596625}
-  ageText: {fileID: 929711343}
   totalTime: 600
-  maxAge: 60
-  npcAnimator: {fileID: 0}
-  triggerName: TimeOver
 --- !u!114 &1232596625
 MonoBehaviour:
   m_ObjectHideFlags: 0

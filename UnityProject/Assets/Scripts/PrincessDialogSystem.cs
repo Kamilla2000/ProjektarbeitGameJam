@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class PrincessDialogSystem : MonoBehaviour
@@ -20,6 +20,7 @@ public class PrincessDialogSystem : MonoBehaviour
     public string[] healReplies;
 
     private bool isPlayerNear = false;
+    private bool isDisabled = false; // ✅ disables dialog completely
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class PrincessDialogSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isDisabled) return;
+
         if (other.CompareTag("Player"))
         {
             isPlayerNear = true;
@@ -38,6 +41,8 @@ public class PrincessDialogSystem : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (isDisabled) return;
+
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
@@ -47,7 +52,7 @@ public class PrincessDialogSystem : MonoBehaviour
 
     public void ShowRandomApproachReply()
     {
-        if (approachReplies.Length == 0 || dialogUI == null || dialogText == null) return;
+        if (isDisabled || approachReplies.Length == 0 || dialogUI == null || dialogText == null) return;
 
         dialogUI.SetActive(true);
         dialogText.text = approachReplies[Random.Range(0, approachReplies.Length)];
@@ -55,7 +60,7 @@ public class PrincessDialogSystem : MonoBehaviour
 
     public void ShowRandomKissReply()
     {
-        if (kissReplies.Length == 0 || dialogUI == null || dialogText == null) return;
+        if (isDisabled || kissReplies.Length == 0 || dialogUI == null || dialogText == null) return;
 
         dialogUI.SetActive(true);
         dialogText.text = kissReplies[Random.Range(0, kissReplies.Length)];
@@ -63,7 +68,7 @@ public class PrincessDialogSystem : MonoBehaviour
 
     public void ShowRandomHealReply()
     {
-        if (healReplies.Length == 0 || dialogUI == null || dialogText == null) return;
+        if (isDisabled || healReplies.Length == 0 || dialogUI == null || dialogText == null) return;
 
         dialogUI.SetActive(true);
         dialogText.text = healReplies[Random.Range(0, healReplies.Length)];
@@ -73,5 +78,12 @@ public class PrincessDialogSystem : MonoBehaviour
     {
         if (dialogUI != null)
             dialogUI.SetActive(false);
+    }
+
+    // ✅ Call this when she meets the prince to stop all further dialogue
+    public void DisableDialog()
+    {
+        isDisabled = true;
+        HideDialog();
     }
 }

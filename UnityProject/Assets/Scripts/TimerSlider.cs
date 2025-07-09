@@ -1,21 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimerSlider : MonoBehaviour
 {
-    [Header("Timer Einstellungen")]
     public Slider timerSlider;
-    public TextMeshProUGUI ageText;
-    public float totalTime = 600f; // z.B. 10 Minuten
-    public int maxAge = 60;        // z.B. Alter von 0 bis 60
-
-    [Header("NPC Animation")]
-    public Animator npcAnimator;         // Der Animator deines NPCs
-    public string triggerName = "TimeOver"; // Der Trigger im Animator
+    public float totalTime = 120f;
 
     private float currentTime = 0f;
-    private bool isRunning = true;
+    private bool hasTriggered = false;
 
     void Start()
     {
@@ -25,42 +18,21 @@ public class TimerSlider : MonoBehaviour
             timerSlider.maxValue = totalTime;
             timerSlider.value = 0f;
         }
-
-        UpdateAgeText(0);
     }
 
     void Update()
     {
-        if (!isRunning) return;
+        if (hasTriggered) return;
 
         currentTime += Time.deltaTime;
 
+        if (timerSlider != null)
+            timerSlider.value = currentTime;
+
         if (currentTime >= totalTime)
         {
-            currentTime = totalTime;
-            isRunning = false;
-
-            // 👉 Hier wird die NPC-Animation ausgelöst
-            if (npcAnimator != null && !string.IsNullOrEmpty(triggerName))
-            {
-                npcAnimator.SetTrigger(triggerName);
-                Debug.Log("⌛ Zeit abgelaufen! NPC spielt Animation.");
-            }
+            hasTriggered = true;
+            SceneManager.LoadScene("CastleFight_Cut");
         }
-
-        if (timerSlider != null)
-        {
-            timerSlider.value = currentTime;
-        }
-
-        float progress = currentTime / totalTime;
-        int currentAge = Mathf.RoundToInt(progress * maxAge);
-        UpdateAgeText(currentAge);
-    }
-
-    void UpdateAgeText(int age)
-    {
-        if (ageText != null)
-            ageText.text = age.ToString();
     }
 }
