@@ -19,11 +19,17 @@ public class AnimationAndMovementController : MonoBehaviour
     private bool isMovementPressed;
     private bool isRunPressed;
     private bool isJumpPressed;
+    private bool isJumping = false;
 
     [SerializeField] private float walkSpeed = 2f;
-    [SerializeField] private float runMultiplier = 2f;
-    private float gravity = -9.8f;
+    [SerializeField] private float runMultiplier = 1f;
+    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float jumpTimeout = 0.2f;
+
+    private float gravity = -9.81f;
     private float groundedGravity = -0.05f;
+    private float initialJumpVelocity;
+    private float jumpCooldownTimer = 0f;
 
     private void Awake()
     {
@@ -44,6 +50,8 @@ public class AnimationAndMovementController : MonoBehaviour
 
         playerInput.CharacterControls.Jump.started += onJump;
         playerInput.CharacterControls.Jump.canceled += onJump;
+
+        initialJumpVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
     }
 
     private void onMovementInput(InputAction.CallbackContext context)
@@ -66,11 +74,29 @@ public class AnimationAndMovementController : MonoBehaviour
     {
         if (characterController.isGrounded)
         {
+            if (isJumping)
+            {
+                // Landung
+                isJumping = false;
+            }
+
+            jumpCooldownTimer = 0f;
             currentMovement.y = groundedGravity;
             appliedMovement.y = groundedGravity;
+
+            if (isJumpPressed && jumpCooldownTimer <= 0f)
+            {
+                isJumping = true;
+                currentMovement.y = initialJumpVelocity;
+                appliedMovement.y = initialJumpVelocity;
+                jumpCooldownTimer = jumpTimeout;
+            }
         }
         else
         {
+            jumpCooldownTimer -= Time.deltaTime;
+
+            // Schwerkraft wirkt in der Luft
             currentMovement.y += gravity * Time.deltaTime;
             appliedMovement.y = currentMovement.y;
         }
@@ -101,17 +127,20 @@ public class AnimationAndMovementController : MonoBehaviour
         bool isWalking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
 
+        // Walking
         if (isMovementPressed && !isWalking)
             animator.SetBool(isWalkingHash, true);
         else if (!isMovementPressed && isWalking)
             animator.SetBool(isWalkingHash, false);
 
+        // Running
         if (isMovementPressed && isRunPressed && !isRunning)
             animator.SetBool(isRunningHash, true);
         else if ((!isMovementPressed || !isRunPressed) && isRunning)
             animator.SetBool(isRunningHash, false);
 
-        animator.SetBool(isJumpingHash, isJumpPressed);
+        // Jumping Animation nur wenn wir wirklich springen
+        animator.SetBool(isJumpingHash, isJumping);
     }
 
     private void Update()
@@ -141,6 +170,5 @@ public class AnimationAndMovementController : MonoBehaviour
     private void OnEnable() => playerInput.CharacterControls.Enable();
     private void OnDisable() => playerInput.CharacterControls.Disable();
 
-    // 👇 wichtig für NPCs wie Ears.cs
     public bool IsAudible => isMovementPressed || isRunPressed || isJumpPressed;
 }
