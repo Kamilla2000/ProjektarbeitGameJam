@@ -16108,7 +16108,7 @@ MonoBehaviour:
       m_Calls: []
   NodeID: 27
   TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
-  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Icon: {fileID: 21300000, guid: 674bbb49888b53741a02c762fcbe1d9c, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304092
 MonoBehaviour:
@@ -16127,7 +16127,7 @@ MonoBehaviour:
       m_Calls: []
   NodeID: 26
   TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
-  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Icon: {fileID: 21300000, guid: 674bbb49888b53741a02c762fcbe1d9c, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304093
 MonoBehaviour:
@@ -16146,7 +16146,7 @@ MonoBehaviour:
       m_Calls: []
   NodeID: 24
   TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
-  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Icon: {fileID: 21300000, guid: 674bbb49888b53741a02c762fcbe1d9c, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304094
 MonoBehaviour:
@@ -16165,7 +16165,7 @@ MonoBehaviour:
       m_Calls: []
   NodeID: 23
   TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
-  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Icon: {fileID: 21300000, guid: 674bbb49888b53741a02c762fcbe1d9c, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304095
 MonoBehaviour:
@@ -16184,7 +16184,7 @@ MonoBehaviour:
       m_Calls: []
   NodeID: 22
   TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
-  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Icon: {fileID: 21300000, guid: 674bbb49888b53741a02c762fcbe1d9c, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!114 &1250304096
 MonoBehaviour:
@@ -16203,7 +16203,7 @@ MonoBehaviour:
       m_Calls: []
   NodeID: 21
   TMPFont: {fileID: 11400000, guid: 11e48135cb12fc74b95298b7069150aa, type: 2}
-  Icon: {fileID: 21300000, guid: 4d0a65cb0628a1a41b2e3c79970022cc, type: 3}
+  Icon: {fileID: 21300000, guid: 674bbb49888b53741a02c762fcbe1d9c, type: 3}
   Audio: {fileID: 8300000, guid: 0a5ba18db8d82ca4c94c21453c809cdf, type: 3}
 --- !u!1001 &1360215048
 PrefabInstance:
@@ -16752,6 +16752,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7722219109752230835, guid: b107258a16c894749982c0e6e6ed6483,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8fa68c9de5bd74947b4399915397dc1c, type: 2}
+    - target: {fileID: -7248827071515774946, guid: b107258a16c894749982c0e6e6ed6483,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8fa68c9de5bd74947b4399915397dc1c, type: 2}
+    - target: {fileID: -7248827071515774946, guid: b107258a16c894749982c0e6e6ed6483,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8fa68c9de5bd74947b4399915397dc1c, type: 2}
+    - target: {fileID: -1181983916582665281, guid: b107258a16c894749982c0e6e6ed6483,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8fa68c9de5bd74947b4399915397dc1c, type: 2}
     - target: {fileID: 919132149155446097, guid: b107258a16c894749982c0e6e6ed6483,
         type: 3}
       propertyPath: m_Name
@@ -16762,6 +16782,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Princess
       objectReference: {fileID: 0}
+    - target: {fileID: 2802763668615107451, guid: b107258a16c894749982c0e6e6ed6483,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8fa68c9de5bd74947b4399915397dc1c, type: 2}
     - target: {fileID: 5866666021909216657, guid: b107258a16c894749982c0e6e6ed6483,
         type: 3}
       propertyPath: m_Controller
@@ -16772,6 +16797,11 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6259312895021163585, guid: b107258a16c894749982c0e6e6ed6483,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8fa68c9de5bd74947b4399915397dc1c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21727,34 +21757,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 28
-  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":21}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":326,\"yPos\":115},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah,
-    there you are\u2026 my assigned *Amor-agent*. You don\u2019t exactly scream \u201Cqualified,\u201D
-    you know.\\r\\n\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":22}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":376,\"yPos\":361},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s
-    not reassuring.\",\"parentUIDs\":[21],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":403,\"yPos\":607},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Captured.
-    By *Anti-Amor*. That evil wannabe Cupid snatched him and locked him in his dark
-    love fortress.\",\"parentUIDs\":[22],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":26}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":435,\"yPos\":709},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"And
-    to make it worse? He cursed me. Now *everyone* I pass falls in love with me.
-    Farmers. Blacksmiths. A goat.\",\"parentUIDs\":[4],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":23}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":825,\"yPos\":506},\"ID\":8,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"If
-    they get too close, I start to feel... things. Wrong things. Romantic things.
-    About *them*.\\r\\n\",\"parentUIDs\":[26],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":13}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":851,\"yPos\":231},\"ID\":12,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Exactly.
-    Here\u2019s how it works:\",\"parentUIDs\":[23],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":14}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1081,\"yPos\":307},\"ID\":13,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
-    Use **[WASD]** to walk, **[Shift]** to run, and **[Space]** to jump. Got it?\",\"parentUIDs\":[12],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":15}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1059,\"yPos\":497},\"ID\":14,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
-    Press **[Q]** to cast your *Amor magic* \u2014 break their illusions and remind
-    them I\u2019m taken!\\r\\n\",\"parentUIDs\":[13],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":16}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1019,\"yPos\":637},\"ID\":15,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
-    Each defeated love-struck weirdo gives you **Love Points** \\ud83d\\udc96. Stack
-    enough, and you can unleash your **Super Amor Rain** \u2014 boom! All nearby
-    enemies snap out of it\",\"parentUIDs\":[14],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":24}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":938,\"yPos\":750},\"ID\":16,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"And
-    if I start falling for someone\u2026 *again*... use a **Love Letter \\ud83d\\udc8c**
-    to remind me who I *really* love. My prince.\",\"parentUIDs\":[15],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":27}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":389,\"yPos\":830},\"ID\":18,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s
-    the job. Don\u2019t screw it up, Amor.\",\"parentUIDs\":[24],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":372,\"yPos\":229},\"ID\":21,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Hey!
-    I may not look like much, but I\u2019ve got a heart full of passion\u2026 and
-    I only failed *Love Combat* twice.\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":383,\"yPos\":470},\"ID\":22,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Look,
-    I\u2019m here, I\u2019ve got wings, and I\u2019m ready to shoot some feelings.
-    Where\u2019s the prince?\\r\\n\",\"parentUIDs\":[2],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":868,\"yPos\":390},\"ID\":23,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Okay,
-    so you need me to zap these fake-lovers with some real Amor energy?\",\"parentUIDs\":[8],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":710,\"yPos\":779},\"ID\":24,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"So
-    I\u2019m fighting off cursed love-zombies, keeping your heart in check, and saving
-    your royal boyfriend?\",\"parentUIDs\":[16],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":643,\"yPos\":666},\"ID\":26,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ew.\",\"parentUIDs\":[6],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":113,\"yPos\":816},\"ID\":27,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
-    For Love and Glory... I got this\",\"parentUIDs\":[18],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7}]}"
+  json: "{\"Options\":[],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":21}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":467,\"yPos\":37},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah,
+    there you are\u2026 my assigned Anti-Amor agent. You don\u2019t exactly scream
+    \u201Cqualified,\u201D you know.\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":22}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":513,\"yPos\":283},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Not
+    helping your case.\",\"parentUIDs\":[21],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":544,\"yPos\":529},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Captured.
+    By Amor. That manipulative, glitter-obsessed Cupid threw him into his twisted
+    love fortress.\",\"parentUIDs\":[22],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":26}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":575,\"yPos\":630},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
+    And guess what? He cursed me. Now anyone I pass instantly falls head over heels.
+    Farmers. Blacksmiths. A goat.\",\"parentUIDs\":[4],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":23}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":966,\"yPos\":428},\"ID\":8,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"It\u2019s
+    more than awkward. If they get too close, I start to feel things. Gross, romantic
+    things. For them.\",\"parentUIDs\":[26],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":13}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":992,\"yPos\":153},\"ID\":12,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bingo.
+    Here's the deal:\",\"parentUIDs\":[23],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":14}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1222,\"yPos\":229},\"ID\":13,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
+    Use [WASD] to walk, [Shift] to run, [Space] to jump.\",\"parentUIDs\":[12],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":15}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1200,\"yPos\":419},\"ID\":14,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Press
+    [Q] to shoot your Anti-Amor magic \u2014 break illusions and remind them love
+    isn\u2019t mind control!\",\"parentUIDs\":[13],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":16}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1160,\"yPos\":559},\"ID\":15,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Every
+    weirdo you free gives you Clarity Points . Stack enough and unleash your Truth
+    Pulse \u2014 boom, mass heartbreak and peace of mind.\",\"parentUIDs\":[14],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":24}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1079,\"yPos\":672},\"ID\":16,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"And
+    if I start acting weird again\u2026 like catching feelings for the baker or something\u2026
+    shoot a Reality Note at me. Remind me who I\u2019m really into. My prince.\",\"parentUIDs\":[15],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":27}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":530,\"yPos\":752},\"ID\":18,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s
+    the mission. Don\u2019t screw it up, Anti-Amor.\",\"parentUIDs\":[24],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Princess\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":513,\"yPos\":151},\"ID\":21,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Hey!
+    I may not look like much, but I\u2019ve got arrows full of clarity\u2026 and
+    I only failed Love Disarmament twice.\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Anti-Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":524,\"yPos\":392},\"ID\":22,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Look,
+    I\u2019m here, I\u2019ve got wings, and I\u2019m ready to break some delusions.
+    Where\u2019s the prince?\",\"parentUIDs\":[2],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Anti-Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1009,\"yPos\":312},\"ID\":23,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"So
+    I need to shoot reality arrows at these love-blinded freaks and snap 'em out
+    of Amor\u2019s spell?\",\"parentUIDs\":[8],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Anti-Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":835,\"yPos\":692},\"ID\":24,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"So
+    I\u2019m undoing Amor\u2019s mess, protecting your emotional sanity, and saving
+    your man?\",\"parentUIDs\":[16],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Anti-Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":784,\"yPos\":588},\"ID\":26,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ew.\",\"parentUIDs\":[6],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Anti-Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":254,\"yPos\":738},\"ID\":27,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"
+    For Love and Glory... I got this\",\"parentUIDs\":[18],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Anti-Amor\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.7}]}"
   saveVersion: 110
   DefaultName: 
   DefaultSprite: {fileID: 0}

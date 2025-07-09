@@ -1502,17 +1502,17 @@ MonoBehaviour:
   dialogText: {fileID: 1097756106}
   nextButton: {fileID: 155914059}
   lines:
-  - Oh look... the discount Cupid finally shows up.
-  - "What\u2019s the matter, out of glitter arrows and hope?"
-  - "You\u2019re too late. The prince is mine now. And no, it\u2019s not \u201Cjust
-    a phase.\u201D"
-  - " I\u2019ve surrounded myself with admirers. Adorable, obsessive, and *very stabby*.\r\n"
-  - So go ahead, try to reach him.
-  - "You won\u2019t make it. You\u2019ll be too busy dodging kisses."
-  - Me? Fight you directly? Pff. As if.
-  - "I\u2019ll be over here... looking fabulous."
-  - "And when my timer runs out... I\u2019m gone, babe \U0001F485\U0001F485\U0001F485\U0001F485"
-  - " Ta-taaa~ \U0001F494\U0001F4A8"
+  - Oh look... the budget heartbreak agent finally arrives.
+  - "What\u2019s the plan, huh? Talk people out of feelings? How anti-romantic."
+  - "You\u2019re too late. The prince is already wrapped in my perfect, sparkly affection."
+  - "And no, this isn\u2019t some \u201Ctoxic love\u201D phase \u2014 this is eternal
+    devotion"
+  - "I\u2019ve got an army of lovers. Clingy. Possessive. Deadly adorable."
+  - So go ahead. Try to reach him.
+  - "You\u2019ll be dodging hugs, hearts, and deadly crushes the whole way."
+  - "I\u2019ll be over here, basking in admiration and lighting candles with my vibes"
+  - "But when the timer hits zero\u2026 I\u2019m gone, babe"
+  - Ta-taaa
   typingSpeed: 0.03
 --- !u!1001 &43254809
 PrefabInstance:
@@ -52021,7 +52021,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Anti-Amor
+  m_text: Amor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -66637,6 +66637,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2
   runMultiplier: 5
+  jumpHeight: 3
+  jumpTimeout: 0.2
 --- !u!95 &1388755974
 Animator:
   serializedVersion: 7
