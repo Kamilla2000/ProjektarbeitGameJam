@@ -30,27 +30,6 @@ public class Eyes : Sense
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        _player = GameObject.FindGameObjectWithTag("Princess"); // Tag geändert
-
-        if (_player == null) return;
-
-        _directionToPlayer = _player.transform.position - HeadReferenceTransform.position;
-
-        SenseGizmos.DrawRangeCircle(HeadReferenceTransform.position, transform.up, Range);
-
-        if (IsInRange())
-        {
-            SenseGizmos.DrawFOV(HeadReferenceTransform.position, HeadReferenceTransform.forward, Vector3.up, Range, Fov);
-
-            if (IsInFieldOfView())
-            {
-                SenseGizmos.DrawRay(HeadReferenceTransform.position, _player.transform.position, IsNotOccluded());
-            }
-        }
-    }
-
     public bool IsInFieldOfView()
     {
         Vector3 direction = _directionToPlayer;
